@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Items</title>
+	<link rel="stylesheet" type="text/css" href="../item.css">
+</head>
+<body>
+	<h1>Liste des items </h1>
+	<table>
+		<tr>
+   			<th>Type</th>
+    		<th>Nom</th>
+    		<th>Resistance</th>
+  		</tr>
+  		{{#items}}
+  		<tr>
+   			<td>{{type}}</td>
+    		<td>{{nom}}</td>
+    		<td>{{resTotale}}</td>
+  		</tr>
+  		{{/items}}
+  		
+	</table>
+</body>
+</html>

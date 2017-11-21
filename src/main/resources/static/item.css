@@ -1,0 +1,15 @@
+table {
+	border-collapse :collapse;
+	
+}
+td {
+	text-align : center;
+	border :1px solid  black;
+}
+
+tr, th {
+	border :1px solid  black;
+}
+th {
+	background-color : gray; 
+}
