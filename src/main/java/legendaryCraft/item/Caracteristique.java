@@ -1,4 +1,4 @@
-package legendaryCraft.items;
+package legendaryCraft.item;
 
 public class Caracteristique {
 	

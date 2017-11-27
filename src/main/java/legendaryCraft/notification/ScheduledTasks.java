@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import legendaryCraft.items.Item;
-import legendaryCraft.items.ItemRepository;
+import legendaryCraft.item.Item;
+import legendaryCraft.item.ItemRepository;
 
 @Component
 public class ScheduledTasks {
