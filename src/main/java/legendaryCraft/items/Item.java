@@ -74,6 +74,12 @@ public class Item {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public int lowerRes(){
+		if (this.res>0)
+			this.res--;
+		return this.res;
+	}
 	
 	
 
