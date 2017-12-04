@@ -4,8 +4,8 @@ import java.util.List;
 
 import legendaryCraft.item.Caracteristique;
 import legendaryCraft.item.Item;
-import legendaryCraft.item.ItemType;
-import legendaryCraft.item.Rarete;
+import legendaryCraft.item.enums.ItemType;
+import legendaryCraft.item.enums.Rarete;
 
 public class Bouclier extends Item {
 

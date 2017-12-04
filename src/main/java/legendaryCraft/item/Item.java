@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Item")
+import legendaryCraft.item.enums.ItemType;
+import legendaryCraft.item.enums.Rarete;
+
 public abstract class Item {
 	
 	@Id
@@ -41,6 +42,11 @@ public abstract class Item {
 		this.niveauRequis = niveauRequis;
 	}
 
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", resTotale=" + resTotale + ", res=" + res + ", niveauRequis=" + niveauRequis
+				+ ", nom=" + nom + ", itemType=" + itemType + ", caracs=" + caracs + ", rarete=" + rarete + "]";
+	}
 	
 	// Tous les getter et setter
 

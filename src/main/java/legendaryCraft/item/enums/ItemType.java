@@ -1,4 +1,4 @@
-package legendaryCraft.item;
+package legendaryCraft.item.enums;
 
 /**
  * Type d'item correspondant aux emplacements disponible sur les personnages (pas de détail concernant le type d'arme)

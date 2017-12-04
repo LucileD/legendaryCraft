@@ -1,11 +1,11 @@
-package legendaryCraft.item.type.armes;
+package legendaryCraft.item.enums;
 
 /**
  * Indique si l'arme est a une main ou deux mains
  * @author ongenae
  *
  */
-public enum ArmeType {
+public enum Maniement {
 	UNE_MAIN,
 	DEUX_MAINS;
 }

@@ -2,6 +2,8 @@ package legendaryCraft;
 
 
 
+import java.util.ArrayList;
+
 import javax.jms.ConnectionFactory;
 
 import org.slf4j.*;
@@ -21,8 +23,20 @@ import org.springframework.jms.support.converter.MessageType;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.jms.support.converter.MessageConverter;
 
+import legendaryCraft.item.ArmeRepository;
+import legendaryCraft.item.Caracteristique;
+import legendaryCraft.item.CaracteristiqueIntitule;
 import legendaryCraft.item.Item;
 import legendaryCraft.item.ItemRepository;
+import legendaryCraft.item.enums.ArmeType;
+import legendaryCraft.item.enums.ItemType;
+import legendaryCraft.item.enums.Maniement;
+import legendaryCraft.item.enums.Rarete;
+import legendaryCraft.item.type.Armure;
+import legendaryCraft.item.type.Casque;
+import legendaryCraft.item.type.armes.Arme;
+import legendaryCraft.item.type.armes.Epee;
+import legendaryCraft.item.type.armes.Masse;
 import legendaryCraft.notification.NotificationDurability;
 import legendaryCraft.personnage.Joueur;
 import legendaryCraft.personnage.Personnage;
@@ -53,7 +67,29 @@ public class Application {
     }
     
     @Bean
-    public CommandLineRunner demo(ItemRepository itemRepository, PersonnageRepository personnageRepository){
+    public CommandLineRunner demo(ItemRepository itemRepository, ArmeRepository armeRepository, PersonnageRepository personnageRepository){
+    	ArrayList<Caracteristique> cars = new ArrayList<Caracteristique>();
+    	
+    	Caracteristique res = new Caracteristique(CaracteristiqueIntitule.RESISTANCE, 10);
+    	cars.add(res);
+    	
+    	Casque c = new Casque("Heaume de chevalier", 40, cars, Rarete.COMMON, 1);
+    	Armure a = new Armure("Armure de basse qualité magique", 45, cars, Rarete.RARE, 1);
+    	cars.remove(res);
+    	
+    	
+    	Caracteristique deg = new Caracteristique(CaracteristiqueIntitule.DOMMAGE, 15);
+    	cars.add(deg);
+    	
+    	Epee e = new Epee("Lame de Duncan", 50, cars, Rarete.RARE, 1, Maniement.UNE_MAIN);
+    	Masse m = new Masse("Masse de son père", 20, cars, Rarete.COMMON, 1);
+    	
+    	
+    	itemRepository.save(c);
+    	itemRepository.save(a);
+    	armeRepository.save(e);
+    	armeRepository.save(m);
+    	
 //    	repository.save(new Item("boucle d'oreilles","nomb",10));
 //    	repository.save(new Item("ceinture","c1",20));
 //    	repository.save(new Item("épée","e1",100));
@@ -63,11 +99,36 @@ public class Application {
     	
     	return args ->{
 
-	    	log.info("Personnes trouvé avec findAll():");
+	    	log.info("items trouvés avec findAll():");
 	    	log.info("--------------------------------");
 	    	for (Item item : itemRepository.findAll()){
 	    		log.info(item.toString());
 	    	}
+	    	
+	    	log.info("Récupérer un item de rarete 'rare'");
+	    	log.info("--------------------------------");
+	    	for (Item item : itemRepository.findByRarete(Rarete.RARE)) {
+	    		log.info(item.toString());
+	    	}
+	    	
+	    	log.info("Récupérer les armes");
+	    	log.info("--------------------------------");
+	    	for (Arme arme : armeRepository.findAll()) {
+	    		log.info(arme.toString());
+	    	}
+	    	
+	    	log.info("Récupérer les armes à une main");
+	    	log.info("--------------------------------");
+	    	for (Arme arme : armeRepository.findByManiement(Maniement.UNE_MAIN)) {
+	    		log.info(arme.toString());
+	    	}
+	    	
+	    	log.info("Récupérer les épées");
+	    	log.info("--------------------------------");
+	    	for (Arme arme : armeRepository.findByArmeType(ArmeType.EPEE)) {
+	    		log.info(arme.toString());
+	    	}
+	    	
 	    };
     }
     

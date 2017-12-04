@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import legendaryCraft.item.type.armes.ArmeType;
+import legendaryCraft.item.enums.ArmeType;
+import legendaryCraft.item.enums.ItemType;
+import legendaryCraft.item.enums.Maniement;
+import legendaryCraft.item.enums.Rarete;
 
 
 @Repository
@@ -20,6 +23,5 @@ public interface ItemRepository extends MongoRepository<Item, String>  {
 	public List<Item> findByRarete(Rarete rarete);
 	
 	public List<Item> findByItemTypeAndRarete(ItemType type, Rarete rarete);
-	
-	public List<Item> findByArmeType(ArmeType armeType);
+
 }
