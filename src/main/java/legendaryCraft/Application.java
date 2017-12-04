@@ -24,6 +24,9 @@ import org.springframework.jms.support.converter.MessageConverter;
 import legendaryCraft.item.Item;
 import legendaryCraft.item.ItemRepository;
 import legendaryCraft.notification.NotificationDurability;
+import legendaryCraft.personnage.Joueur;
+import legendaryCraft.personnage.Personnage;
+import legendaryCraft.personnage.PersonnageRepository;
 
 @SpringBootApplication
 @EnableMongoRepositories
@@ -50,15 +53,19 @@ public class Application {
     }
     
     @Bean
-    public CommandLineRunner demo(ItemRepository repository){
+    public CommandLineRunner demo(ItemRepository itemRepository, PersonnageRepository personnageRepository){
 //    	repository.save(new Item("boucle d'oreilles","nomb",10));
 //    	repository.save(new Item("ceinture","c1",20));
 //    	repository.save(new Item("épée","e1",100));
+
+    	personnageRepository.save(new Personnage("perso1", new Joueur(), 2, null, null, null, null, null, null, null, null, null, null));
+    	personnageRepository.save(new Personnage("perso2", new Joueur(), 8, null, null, null, null, null, null, null, null, null, null));
+    	
     	return args ->{
 
 	    	log.info("Personnes trouvé avec findAll():");
 	    	log.info("--------------------------------");
-	    	for (Item item : repository.findAll()){
+	    	for (Item item : itemRepository.findAll()){
 	    		log.info(item.toString());
 	    	}
 	    };
