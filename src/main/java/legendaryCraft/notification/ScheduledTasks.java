@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -29,8 +31,7 @@ public class ScheduledTasks {
 		for (Item i : items) {
 			int v = i.lowerRes();
 			if (v == 0) {
-				// envoyer notif
-				log.info("Item " + i.getNom() + " resistance at 0.");
+				//TODO 
 			}
 		}
 		repository.save(items);

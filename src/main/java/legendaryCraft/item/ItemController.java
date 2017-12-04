@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AutoConfigureDataMongo
-@RequestMapping("/api")
+@RequestMapping("/app")
 public class ItemController {
 	
 	@Autowired
