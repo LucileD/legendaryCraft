@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "Item")
 public abstract class Item {
 	
 	@Id
@@ -18,7 +20,7 @@ public abstract class Item {
 	
 	protected String nom;
 	
-	protected ItemType type;
+	protected ItemType itemType;
 	
 	protected List<Caracteristique> caracs;
 	
@@ -29,7 +31,7 @@ public abstract class Item {
 	}
 	
 	public Item (ItemType type, String nom, int resTotale, List<Caracteristique> caracs, Rarete rarete, int niveauRequis){
-		this.type = type;
+		this.itemType = type;
 		this.id = new ObjectId().toString();
 		this.res = resTotale;
 		this.resTotale = resTotale;
@@ -75,12 +77,12 @@ public abstract class Item {
 		this.id = id;
 	}
 	
-	public ItemType getType() {
-		return type;
+	public ItemType getItemType() {
+		return itemType;
 	}
 
-	public void setType(ItemType type) {
-		this.type = type;
+	public void setItemType(ItemType type) {
+		this.itemType = type;
 	}
 	
 	public int getNiveauRequit() {
