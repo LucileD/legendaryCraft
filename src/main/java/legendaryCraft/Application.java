@@ -51,9 +51,9 @@ public class Application {
     
     @Bean
     public CommandLineRunner demo(ItemRepository repository){
-    	repository.save(new Item("boucle d'oreilles","nomb",10));
-    	repository.save(new Item("ceinture","c1",20));
-    	repository.save(new Item("épée","e1",100));
+//    	repository.save(new Item("boucle d'oreilles","nomb",10));
+//    	repository.save(new Item("ceinture","c1",20));
+//    	repository.save(new Item("épée","e1",100));
     	return args ->{
 
 	    	log.info("Personnes trouvé avec findAll():");

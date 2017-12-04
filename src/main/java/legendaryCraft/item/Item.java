@@ -5,7 +5,7 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-public class Item {
+public abstract class Item {
 	
 	@Id
 	protected String id;
@@ -14,28 +14,33 @@ public class Item {
 	
 	protected int res ;
 	
-	protected int niveauRequit;
+	protected int niveauRequis;
 	
 	protected String nom;
 	
-	protected String type;
+	protected ItemType type;
 	
 	protected List<Caracteristique> caracs;
 	
-	protected Rarete rerate;
+	protected Rarete rarete;
 	
 	public Item() {
 		this.id = new ObjectId().toString();
 	}
 	
-	public Item (String type, String nom, int resTotale){
+	public Item (ItemType type, String nom, int resTotale, List<Caracteristique> caracs, Rarete rarete, int niveauRequis){
 		this.type = type;
 		this.id = new ObjectId().toString();
 		this.res = resTotale;
 		this.resTotale = resTotale;
 		this.nom = nom;
+		this.caracs = caracs;
+		this.rarete = rarete;
+		this.niveauRequis = niveauRequis;
 	}
 
+	
+	// Tous les getter et setter
 
 	public int getRes() {
 		return res;
@@ -57,22 +62,41 @@ public class Item {
 		return resTotale;
 	}
 
-
-	public String getId() {
-		return id;
-	}
-
 	public void setResTotale(int resTotale) {
 		this.resTotale = resTotale;
 		this.res = resTotale;
 	}
 
-	public String getType() {
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public ItemType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(ItemType type) {
 		this.type = type;
+	}
+	
+	public int getNiveauRequit() {
+		return niveauRequis;
+	}
+
+	public void setNiveauRequit(int niveauRequit) {
+		this.niveauRequis = niveauRequit;
+	}
+
+	public Rarete getRarete() {
+		return rarete;
+	}
+
+	public void setRarete(Rarete rarete) {
+		this.rarete = rarete;
 	}
 
 	public int lowerRes(){
@@ -80,7 +104,5 @@ public class Item {
 			this.res--;
 		return this.res;
 	}
-	
-	
 
 }
