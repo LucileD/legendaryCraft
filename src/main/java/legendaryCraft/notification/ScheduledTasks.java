@@ -28,9 +28,11 @@ public class ScheduledTasks {
 		log.info("Diminution de la durabilité de chaque item de chaque utilisateur");
 		// récupérer les items de chaque user et diminuer la résistance
 		ArrayList<Item> items = (ArrayList<Item>) repository.findAll();
+		
 		for (Item i : items) {
 			int v = i.lowerRes();
 			if (v == 0) {
+				
 				//TODO 
 			}
 		}

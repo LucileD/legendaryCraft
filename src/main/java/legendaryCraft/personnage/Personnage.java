@@ -2,10 +2,13 @@ package legendaryCraft.personnage;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import legendaryCraft.item.type.*;
 import legendaryCraft.item.type.armes.Arme;
 
+@Document(collection="personnages")
 public class Personnage {
 	
 	@Id
@@ -13,6 +16,7 @@ public class Personnage {
 	
 	protected String nom;
 	
+	@DBRef
 	protected Joueur joueur;
 	
 	protected int niveau;

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Personnages</title>
+	<link rel="stylesheet" type="text/css" href="../item.css">
+</head>
+<body>
+	<h1>Liste de tes personnages </h1>
+	<table>
+		<tr>
+   			<th>Nom</th>
+    		<th>Niveau</th>
+  		</tr>
+  		{{#personnages}}
+  		
+	  		<tr>
+	    		<td><a href="/app/personnage/{{id}}">{{nom}}</a></td>
+	    		<td>{{niveau}}</td>
+	  		</tr>
+  		{{/personnages}}
+	</table>
+</body>
+</html>
