@@ -8,11 +8,16 @@ package legendaryCraft.item.enums;
 public enum ItemType {
 	CASQUE,
 	BOUCLIER,
-	ARME,
 	ARMURE,
 	CEINTURE,
 	PANTALON,
 	BOTTES,
 	ANNEAU,
-	AMULETTE
-}
+	AMULETTE,
+	EPEE,
+	ARC,
+	BATON,
+	DAGUE,
+	HACHE,
+	MASSE
+};

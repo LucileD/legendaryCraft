@@ -8,9 +8,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import legendaryCraft.item.enums.ItemType;
 import legendaryCraft.item.enums.Rarete;
+import legendaryCraft.item.enums.Slot;
 
 @Document(collection = "Item")
-public abstract class Item {
+public class Item {
 	
 	@Id
 	protected String id;
@@ -28,12 +29,14 @@ public abstract class Item {
 	protected List<Caracteristique> caracs;
 	
 	protected Rarete rarete;
+
+	protected List<Slot> slots;
 	
 	public Item() {
 		this.id = new ObjectId().toString();
 	}
 	
-	public Item (ItemType type, String nom, int resTotale, List<Caracteristique> caracs, Rarete rarete, int niveauRequis){
+	public Item (ItemType type, String nom, int resTotale, List<Caracteristique> caracs, Rarete rarete, int niveauRequis, List<Slot> slots){
 		this.itemType = type;
 		this.id = new ObjectId().toString();
 		this.res = resTotale;
@@ -42,6 +45,7 @@ public abstract class Item {
 		this.caracs = caracs;
 		this.rarete = rarete;
 		this.niveauRequis = niveauRequis;
+		this.slots = slots;
 	}
 
 	@Override
@@ -107,6 +111,30 @@ public abstract class Item {
 
 	public void setRarete(Rarete rarete) {
 		this.rarete = rarete;
+	}
+
+	public int getNiveauRequis() {
+		return niveauRequis;
+	}
+
+	public void setNiveauRequis(int niveauRequis) {
+		this.niveauRequis = niveauRequis;
+	}
+
+	public List<Caracteristique> getCaracs() {
+		return caracs;
+	}
+
+	public void setCaracs(List<Caracteristique> caracs) {
+		this.caracs = caracs;
+	}
+
+	public List<Slot> getSlots() {
+		return slots;
+	}
+
+	public void setSlots(List<Slot> slots) {
+		this.slots = slots;
 	}
 
 	public int lowerRes(){

@@ -23,20 +23,13 @@ import org.springframework.jms.support.converter.MessageType;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.jms.support.converter.MessageConverter;
 
-import legendaryCraft.item.ArmeRepository;
 import legendaryCraft.item.Caracteristique;
 import legendaryCraft.item.CaracteristiqueIntitule;
 import legendaryCraft.item.Item;
 import legendaryCraft.item.ItemRepository;
-import legendaryCraft.item.enums.ArmeType;
 import legendaryCraft.item.enums.ItemType;
-import legendaryCraft.item.enums.Maniement;
 import legendaryCraft.item.enums.Rarete;
-import legendaryCraft.item.type.Armure;
-import legendaryCraft.item.type.Casque;
-import legendaryCraft.item.type.armes.Arme;
-import legendaryCraft.item.type.armes.Epee;
-import legendaryCraft.item.type.armes.Masse;
+import legendaryCraft.item.enums.Slot;
 import legendaryCraft.notification.NotificationDurability;
 import legendaryCraft.personnage.Joueur;
 import legendaryCraft.personnage.Personnage;
@@ -67,35 +60,51 @@ public class Application {
     }
     
     @Bean
-    public CommandLineRunner demo(ItemRepository itemRepository, ArmeRepository armeRepository, PersonnageRepository personnageRepository){
+    public CommandLineRunner demo(ItemRepository itemRepository, PersonnageRepository personnageRepository){
     	ArrayList<Caracteristique> cars = new ArrayList<Caracteristique>();
     	
     	Caracteristique res = new Caracteristique(CaracteristiqueIntitule.RESISTANCE, 10);
     	cars.add(res);
     	
-    	Casque c = new Casque("Heaume de chevalier", 40, cars, Rarete.COMMON, 1);
-    	Armure a = new Armure("Armure de basse qualité magique", 45, cars, Rarete.RARE, 1);
-    	cars.remove(res);
+//    	Casque c = new Casque("Heaume de chevalier", 40, cars, Rarete.COMMON, 1);
+//    	Armure a = new Armure("Armure de basse qualité magique", 45, cars, Rarete.RARE, 1);
+    	ArrayList<Slot> slots = new ArrayList<Slot>();
+
+    	slots.add(Slot.TETE);
+    	Item casque = new Item(ItemType.CASQUE, "Heaume de chevalier", 40, cars, Rarete.COMMON, 1, slots);
     	
+    	slots.clear();
+    	slots.add(Slot.HAUT);
+    	Item armure = new Item(ItemType.ARMURE, "Armure de basse qualité magique", 45, cars, Rarete.RARE, 1, slots);
+    	
+    	slots.clear();
+    	cars.remove(res);
     	
     	Caracteristique deg = new Caracteristique(CaracteristiqueIntitule.DOMMAGE, 15);
     	cars.add(deg);
     	
-    	Epee e = new Epee("Lame de Duncan", 50, cars, Rarete.RARE, 1, Maniement.UNE_MAIN);
-    	Masse m = new Masse("Masse de son père", 20, cars, Rarete.COMMON, 1);
+    	slots.add(Slot.MAIN_DROITE);
+    	Item epee = new Item(ItemType.EPEE, "Lame de Duncan", 50, cars, Rarete.RARE, 1, slots);
     	
+    	slots.add(Slot.MAIN_GAUCHE);
+    	Item masse = new Item(ItemType.MASSE, "Masse de son père", 20, cars, Rarete.COMMON, 1, slots);
     	
-    	itemRepository.save(c);
-    	itemRepository.save(a);
-    	armeRepository.save(e);
-    	armeRepository.save(m);
+    	itemRepository.save(casque);
+    	itemRepository.save(armure);
+    	itemRepository.save(epee);
+    	itemRepository.save(masse);
+//    	armeRepository.save(e);
+//    	armeRepository.save(m);
     	
 //    	repository.save(new Item("boucle d'oreilles","nomb",10));
 //    	repository.save(new Item("ceinture","c1",20));
 //    	repository.save(new Item("épée","e1",100));
 
-    	personnageRepository.save(new Personnage("perso1", new Joueur(), 2, null, null, null, null, null, null, null, null, null, null));
-    	personnageRepository.save(new Personnage("perso2", new Joueur(), 8, null, null, null, null, null, null, null, null, null, null));
+//    	personnageRepository.save(new Personnage("perso1", new Joueur(), 2, null, null, null, null, null, null, null, null, null, null));
+//    	personnageRepository.save(new Personnage("perso2", new Joueur(), 8, null, null, null, null, null, null, null, null, null, null));
+   
+    	personnageRepository.save(new Personnage("Zoe", new Joueur(), 2));
+    	personnageRepository.save(new Personnage("Timoleon", new Joueur(), 2));
     	
     	return args ->{
 
@@ -111,21 +120,27 @@ public class Application {
 	    		log.info(item.toString());
 	    	}
 	    	
-	    	log.info("Récupérer les armes");
+	    	log.info("Récupérer les epees");
 	    	log.info("--------------------------------");
-	    	for (Arme arme : armeRepository.findAll()) {
+	    	for (Item arme : itemRepository.findByItemType(ItemType.EPEE)) {
 	    		log.info(arme.toString());
 	    	}
 	    	
-	    	log.info("Récupérer les armes à une main");
+	    	//ne marche pas, on verra plus tard
+	    	log.info("Récupérer les items à une main (droite)");
 	    	log.info("--------------------------------");
-	    	for (Arme arme : armeRepository.findByManiement(Maniement.UNE_MAIN)) {
+	    	slots.clear();
+	    	slots.add(Slot.MAIN_DROITE);
+	    	for (Item arme : itemRepository.findBySlots(slots)) {
 	    		log.info(arme.toString());
 	    	}
 	    	
-	    	log.info("Récupérer les épées");
+	    	log.info("Récupérer les items à deux mains");
 	    	log.info("--------------------------------");
-	    	for (Arme arme : armeRepository.findByArmeType(ArmeType.EPEE)) {
+	    	slots.clear();
+	    	slots.add(Slot.MAIN_GAUCHE);
+	    	slots.add(Slot.MAIN_DROITE);
+	    	for (Item arme : itemRepository.findBySlots(slots)) {
 	    		log.info(arme.toString());
 	    	}
 	    	
