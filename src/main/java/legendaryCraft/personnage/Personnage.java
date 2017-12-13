@@ -60,7 +60,14 @@ public class Personnage {
 		this.amulette = amulette;
 	}
 
+	
+	public Personnage(String nom, Joueur joueur, int niveau) {
+		this.id = new ObjectId().toString();
+		this.nom = nom;
+		this.joueur = joueur;
+		this.niveau = niveau;
 
+	}
 
 
 	public Personnage() {
