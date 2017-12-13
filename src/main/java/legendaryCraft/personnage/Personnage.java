@@ -5,8 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import legendaryCraft.item.type.*;
-import legendaryCraft.item.type.armes.Arme;
+import legendaryCraft.item.Item;
 
 @Document(collection="personnages")
 public class Personnage {
@@ -21,31 +20,30 @@ public class Personnage {
 	
 	protected int niveau;
 	
-	protected Ceinture ceinture;
+	protected Item ceinture;
 	
-	protected Armure armure;
+	protected Item armure;
 	
-	protected Bottes bottes;
+	protected Item bottes;
 	
-	protected Arme arme;
+	protected Item arme;
 	
-	protected Bouclier bouclier;
+	protected Item bouclier;
 	
-	protected Anneau anneauDroit;
+	protected Item anneauDroit;
 	
-	protected Anneau anneauGauche;
+	protected Item anneauGauche;
 	
-	protected Casque casque;
+	protected Item casque;
 	
-	protected Pantalon pantalon;
+	protected Item pantalon;
 	
-	protected Amulette amulette;
+	protected Item amulette;
 
 	
 	
-	public Personnage(String nom, Joueur joueur, int niveau, Ceinture ceinture, Armure armure, Bottes bottes, Arme arme,
-			Bouclier bouclier, Anneau anneauDroit, Anneau anneauGauche, Casque casque, Pantalon pantalon,
-			Amulette amulette) {
+	public Personnage(String nom, Joueur joueur, int niveau, Item ceinture, Item armure, Item bottes, Item arme,
+			Item bouclier, Item anneauDroit, Item anneauGauche, Item casque, Item pantalon, Item amulette) {
 		this.id = new ObjectId().toString();
 		this.nom = nom;
 		this.joueur = joueur;
@@ -61,118 +59,241 @@ public class Personnage {
 		this.pantalon = pantalon;
 		this.amulette = amulette;
 	}
-	
+
+
+
+
 	public Personnage() {
 		this.id = new ObjectId().toString();
 	}
+
+	
+	
+	
+	public String getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
 
 	public String getNom() {
 		return nom;
 	}
 
+
+
+
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+
+
+
 
 	public Joueur getJoueur() {
 		return joueur;
 	}
 
+
+
+
+
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
 	}
+
+
+
+
 
 	public int getNiveau() {
 		return niveau;
 	}
 
+
+
+
+
 	public void setNiveau(int niveau) {
 		this.niveau = niveau;
 	}
 
-	public Ceinture getCeinture() {
+
+
+
+
+	public Item getCeinture() {
 		return ceinture;
 	}
 
-	public void setCeinture(Ceinture ceinture) {
+
+
+
+
+	public void setCeinture(Item ceinture) {
 		this.ceinture = ceinture;
 	}
 
-	public Armure getArmure() {
+
+
+
+
+	public Item getArmure() {
 		return armure;
 	}
 
-	public void setArmure(Armure armure) {
+
+
+
+
+	public void setArmure(Item armure) {
 		this.armure = armure;
 	}
 
-	public Bottes getbottes() {
+
+
+
+
+	public Item getBottes() {
 		return bottes;
 	}
 
-	public void setbottes(Bottes bottes) {
+
+
+
+
+	public void setBottes(Item bottes) {
 		this.bottes = bottes;
 	}
 
-	public Arme getArme() {
+
+
+
+
+	public Item getArme() {
 		return arme;
 	}
 
-	public void setArme(Arme arme) {
+
+
+
+
+	public void setArme(Item arme) {
 		this.arme = arme;
 	}
 
-	public Bouclier getBouclier() {
+
+
+
+
+	public Item getBouclier() {
 		return bouclier;
 	}
 
-	public void setBouclier(Bouclier bouclier) {
-		this.bouclier = bouclier;this.id = new ObjectId().toString();
+
+
+
+
+	public void setBouclier(Item bouclier) {
+		this.bouclier = bouclier;
 	}
 
-	public Anneau getAnneauDroit() {
+
+
+
+
+	public Item getAnneauDroit() {
 		return anneauDroit;
 	}
 
-	public void setAnneauDroit(Anneau anneauDroit) {
+
+
+
+
+	public void setAnneauDroit(Item anneauDroit) {
 		this.anneauDroit = anneauDroit;
 	}
 
-	public Anneau getAnneauGauche() {
+
+
+
+
+	public Item getAnneauGauche() {
 		return anneauGauche;
 	}
 
-	public void setAnneauGauche(Anneau anneauGauche) {
+
+
+
+
+	public void setAnneauGauche(Item anneauGauche) {
 		this.anneauGauche = anneauGauche;
 	}
 
-	public Casque getCasque() {
+
+
+
+
+	public Item getCasque() {
 		return casque;
 	}
 
-	public void setCasque(Casque casque) {
+
+
+
+
+	public void setCasque(Item casque) {
 		this.casque = casque;
 	}
 
-	public Pantalon getPantalon() {
+
+
+
+
+	public Item getPantalon() {
 		return pantalon;
 	}
 
-	public void setPantalon(Pantalon pantalon) {
+
+
+
+
+	public void setPantalon(Item pantalon) {
 		this.pantalon = pantalon;
 	}
 
-	public Amulette getAmulette() {
+
+
+
+
+	public Item getAmulette() {
 		return amulette;
 	}
 
-	public void setAmulette(Amulette amulette) {
+
+
+
+
+	public void setAmulette(Item amulette) {
 		this.amulette = amulette;
 	}
+
+
+
+
+
 	
-	
-	
-	
+
 	
 	
 
