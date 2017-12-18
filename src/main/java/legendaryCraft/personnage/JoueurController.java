@@ -17,7 +17,9 @@ public class JoueurController {
 	private JoueurRepository repository;
 	
 	@RequestMapping("/joueur")
-	public String loging(Principal principal, Model model) {	
+	public String loginGet(Principal principal, Model model) {	
+		System.out.println(principal);
+		System.out.println(principal.getName());
 		Joueur j = repository.findByLogin(principal.getName());
 		model.addAttribute("joueur", j);
 		return "joueur";

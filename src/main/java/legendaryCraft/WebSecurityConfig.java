@@ -13,23 +13,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-            	.antMatchers("/", "/app/items", "/app/item", "/app/joueur").permitAll()
-            	.anyRequest().authenticated()
-            	.and()
-            .formLogin()
-            	.loginPage("/app/login")
-            	.permitAll()
-            	.and()
-            .logout()
-            	.permitAll();
+		 http.csrf().disable()
+	    .authorizeRequests()
+	    .anyRequest().authenticated()
+	    .and()
+	    .formLogin()
+	    .loginPage("/app/login")
+	    .permitAll()
+	    .and()
+	    .logout()
+	    .permitAll();
 	}
 	
 	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
             .withUser("username").password("password").roles("USER");
+        auth.inMemoryAuthentication()
+        	.withUser("test").password("test").roles("USER");
+        auth.inMemoryAuthentication()
+    		.withUser("truc").password("muche").roles("USER");
     }
 
 }
