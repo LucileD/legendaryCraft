@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>céer un personnage</title>
+	<link rel="stylesheet" type="text/css" href="../../item.css">
+	<script type="text/javascript" src="../../niveau.js"></script>
+	
+</head>
+<body>
+	<h1>créez votre nouveau personnage</h1>
+
+	<form method="post" action="/app/nouv_personnage">
+
+		<label>pseudo : </label><input type="text" name="pseudo" id="pseudo"/><br>
+		<label>niveau : </label><input type="range" name="niveau" id="pseudo" min="0" max="100" value="50" oninput="result.value=parseInt(value)"/>
+        <output name="result">--</output><br>
+		<input type="submit" value="Ajouter" />
+		
+
+</form>
+</body>
+</html>

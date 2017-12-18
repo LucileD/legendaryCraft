@@ -1,13 +1,32 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Hello World!</title>
-    </head>
-    <body>
-        <h1 th:inline="text">Hello </h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-    </body>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title> joueur {{joueur.pseudo}}</title>
+	<link rel="stylesheet" type="text/css" href="../../item.css">
+</head>
+<body>
+	<h1>page du joueur {{joueur.pseudo}} </h1>
+
+	<h2>Liste de vos personnages </h2>
+	<table>
+		<tr>
+   			<th>Nom</th>
+    		<th>Niveau</th>
+  		</tr>
+  		{{#personnages}}
+  		
+	  		<tr>
+	    		<td><a href="/app/personnage/{{id}}">{{nom}}</a></td>
+	    		<td>{{niveau}}</td>
+	  		</tr>
+  		{{/personnages}}
+  		<tr>
+	    	<td><a href="/app/nouv_personnage/">céer un nouveau personnage</a></td>
+	  	</tr>
+  		
+	</table>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out"/>
+    </form>
+</body>
 </html>

@@ -64,11 +64,12 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         
-        <dependency>
 
+<!--          <dependency>
+>>>>>>> ajout de la partie pour ajouter un nouvau personnage à un joueur, mis à jour de l'html pour un joueur, manque l'intégration de l'authentification
 	    	<groupId>org.springframework.boot</groupId>
 	    	<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency>-->
         
         
     </dependencies>

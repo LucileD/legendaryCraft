@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface PersonnageRepository  extends MongoRepository<Personnage,String>{
 
 	public List<Personnage> findByJoueur(Joueur joueur);
-	public Personnage findById (String id);
+	public Personnage findByNom(String nom);
 	
 }

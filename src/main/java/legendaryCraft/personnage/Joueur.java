@@ -20,6 +20,13 @@ public class Joueur {
 		this.id = new ObjectId().toString();
 	}
 
+	public Joueur(String pseudo, String mdp) {
+		super();
+		this.pseudo = pseudo;
+		this.mdp = mdp;
+		this.id = new ObjectId().toString();
+	}
+
 	public String getPseudo() {
 		return pseudo;
 	}

@@ -60,7 +60,7 @@ public class Application {
     }
     
     @Bean
-    public CommandLineRunner demo(ItemRepository itemRepository, PersonnageRepository personnageRepository){
+    public CommandLineRunner demo(ItemRepository itemRepository, PersonnageRepository personnageRepository, JoueurRepository joueurRepository){
     	ArrayList<Caracteristique> cars = new ArrayList<Caracteristique>();
     	
     	Caracteristique res = new Caracteristique(CaracteristiqueIntitule.RESISTANCE, 10);
@@ -86,6 +86,21 @@ public class Application {
 //    	armeRepository.save(e);
 //    	armeRepository.save(m);
     	
+//    	repository.save(new Item("boucle d'oreilles","nomb",10));
+//    	repository.save(new Item("ceinture","c1",20));
+//    	repository.save(new Item("épée","e1",100));
+
+//    	personnageRepository.save(new Personnage("perso1", new Joueur(), 2, null, null, null, null, null, null, null, null, null, null));
+//    	personnageRepository.save(new Personnage("perso2", new Joueur(), 8, null, null, null, null, null, null, null, null, null, null));
+   
+    	Joueur j1 = new Joueur("TrucMuche","mdp");
+    	Joueur j2 = new Joueur("Avast","mdp");
+    	joueurRepository.save(j1);
+    	joueurRepository.save(j2);
+    	
+    	personnageRepository.save(new Personnage("Truc", j1, 2));
+    	personnageRepository.save(new Personnage("Muche", j1, 180));
+    	personnageRepository.save(new Personnage("Zoé", j2, 2));
     	
     	return args ->{
 
