@@ -13,20 +13,32 @@
    			<th>Nom</th>
     		<th>Niveau</th>
   		</tr>
-  		{{#notifs}}
+  		{{#personnages}}
+  		
 	  		<tr>
-	  		{{#list}}
-	    		<td><a href="/app/personnage/{{personnage.id}}">{{personnage.nom}}</a></td>
-	    		<td>{{personnage.niveau}}</td>
-	    		<td>{{notifs.nomItem}}</td>
+	    		<td><a href="/app/personnage/{{id}}">{{nom}}</a></td>
+	    		<td>{{niveau}}</td>
 	  		</tr>
-	  		{{/list}}
-  		{{/notifs}}
+  		{{/personnages}}
   		<tr>
 	    	<td><a href="/app/nouv_personnage/">céer un nouveau personnage</a></td>
 	  	</tr>
+	 </table>
+   	<h4>Notification sur les items qui n'ont plus de résistance</h4>
+
+  	{{#notifs}}
   		
-	</table>
+	  	<tr>
+	    	<td>
+	    		<ul>
+	    			<li>nom du personnage : {{personnage.nom}}</li>
+	    			<li>nom de l'item : {{nomItem}}</li>
+	    		
+	    		</ul>
+	    	</td>
+	  	</tr>
+  	{{/notifs}}
+
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Sign Out"/>
     </form>

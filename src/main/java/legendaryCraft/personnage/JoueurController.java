@@ -1,7 +1,7 @@
 package legendaryCraft.personnage;
 
 import java.security.Principal;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +26,17 @@ public class JoueurController {
 	private PersonnageRepository personnageRepository;
 	
 	@Autowired
-	private  NotificationDurabilityRepository nDRepository; 
+	private NotificationDurabilityRepository nDRepository;
 	
 	@RequestMapping("/joueur")
 	public String personnages(Principal principal, Model model) {
 		Joueur j = joueurRepository.findByLogin(principal.getName());
+	
 		List<Personnage> personnages = personnageRepository.findByJoueur(j);
-		List<List<NotificationDurability>> nd = new ArrayList<>();
-		for ( Personnage personnage : personnages ){
-			nd.add(nDRepository.findByPersonnage(personnage));
-		}
+		List<NotificationDurability> nd = nDRepository.findByJoueur(j);
 
-		model.addAttribute("notifs", nd);
+		model.addAttribute("notifs",nd);
+		model.addAttribute("personnages", personnages);
 		model.addAttribute("joueur", j);
 		return "joueur";
 
