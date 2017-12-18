@@ -90,7 +90,7 @@ public class Application {
     	
     	Item casque = new Item(ItemType.CASQUE, "Heaume de chevalier", 40, cars, Rarete.COMMON, 1, false, truc);
     	
-    	Item armure = new Item(ItemType.ARMURE, "Armure de basse qualité magique", 45, cars, Rarete.RARE, 1, false, truc);
+    	Item armure = new Item(ItemType.ARMURE, "Armure de basse qualité magique", 45, cars, Rarete.RARE, 10, false, truc);
     	
     	cars.remove(res);
     	

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Craft d'items</title>
+<link rel="stylesheet" type="text/css" href="../../item.css">
 </head>
 <body>
 	<h1>Félicitations !</h1>
@@ -14,7 +15,6 @@
 	</ul>
 	<table>
 		<tr>
-   			<th></th>
    			{{#item.caracs}}
     		<th>{{nom}}</th>
     		{{/item.caracs}}
@@ -25,8 +25,9 @@
     		{{/item.caracs}}
   		</tr>
 	</table>
-	<form action="/app/craft?id={{idPersonnage}}">
+	<form action="/app/item/craft/{{idPersonnage}}">
 		<input type="submit" value="Craft un autre item">
 	</form>
+	<a href="/app/personnage/{{idPersonnage}}">Retour au personnage</a>
 </body>
 </html>

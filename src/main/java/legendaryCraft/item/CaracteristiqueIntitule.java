@@ -5,7 +5,7 @@ public enum CaracteristiqueIntitule {
 	DOMMAGE ("Dommage"),
 	RESISTANCE ("Résistance"),
 	FORCE ("Force"),
-	INTELLIGENCE ("Intélligence"),
+	INTELLIGENCE ("Intelligence"),
 	CHANCE ("Chance"),
 	AGILITE ("Agilité"),
 	VIE ("Vie"),
