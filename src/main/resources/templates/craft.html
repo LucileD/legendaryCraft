@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Craft d'items</title>
+</head>
+<body>
+	<h1>Félicitations !</h1>
+	<h3>{{item.nom}} [{{maniement}}]</h3>
+	({{item.rarete}})
+	<ul>
+		<li>Niveau requis : {{item.niveauRequis}}</li>
+		<li>Résistance {{item.res}}/{{item.resTotale}}</li>
+	</ul>
+	<table>
+		<tr>
+   			<th></th>
+   			{{#item.caracs}}
+    		<th>{{nom}}</th>
+    		{{/item.caracs}}
+  		</tr>
+  		<tr>
+  			{{#item.caracs}}
+    		<td>{{valeur}}</td>
+    		{{/item.caracs}}
+  		</tr>
+	</table>
+	<form action="/app/craft?id={{idPersonnage}}">
+		<input type="submit" value="Craft un autre item">
+	</form>
+</body>
+</html>
