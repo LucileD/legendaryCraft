@@ -18,12 +18,6 @@ public class PersonnageController {
 	@Autowired
 	private PersonnageRepository repository;
 	
-	@RequestMapping("/personnages")
-	public String personnages(Model model) {
-		List<Personnage> personnages = repository.findAll();
-		model.addAttribute("personnages", personnages);
-		return "personnages";
-	}
 	
 	@RequestMapping("/personnage/{id}")
 	public String personnage(@PathVariable String id, Model model) {

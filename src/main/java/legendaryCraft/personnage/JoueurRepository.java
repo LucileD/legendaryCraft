@@ -12,4 +12,3 @@ public interface JoueurRepository extends MongoRepository<Joueur, String>  {
 
 }
 
-
