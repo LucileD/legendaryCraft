@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import legendaryCraft.item.Item;
 import legendaryCraft.personnage.Joueur;
+import legendaryCraft.personnage.Personnage;
 
 @Document(collection = "NotificationDurability")
 public class NotificationDurability {
@@ -13,31 +14,31 @@ public class NotificationDurability {
 	@Id
 	protected String id;
 	
-	private Joueur joueur;
+	protected Personnage personnage;
 	
-	private Item item;
+	protected Item item;
 	
 	public NotificationDurability() {
 		this.id = new ObjectId().toString();
 	}
 	
-	public NotificationDurability(Joueur j, Item item){
+	public NotificationDurability(Personnage personnage, Item item){
 		this.id = new ObjectId().toString();
-		this.joueur = j;
+		this.personnage = personnage;
 		this.item = item;
 	}
 	
 	@Override
     public String toString() {
-		return "NotificationDurability [id=" + id + ", joueur=" + joueur + ", item=" + item + "]";
+		return "NotificationDurability [id=" + id + ", personnage=" + personnage + ", item=" + item + "]";
     }
 
-	public Joueur getJoueur() {
-		return joueur;
+	public Personnage getPersonnage() {
+		return personnage;
 	}
 
-	public void setJoueur(Joueur j) {
-		this.joueur = j;
+	public void setJoueur(Personnage p) {
+		this.personnage = p;
 	}
 
 	public Item getItem() {

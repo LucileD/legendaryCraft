@@ -1,23 +1,28 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Item template!</title>
+	<title>Item</title>
 	<link rel="stylesheet" type="text/css" href="../item.css">
 </head>
 <body>
-	<h1>Vous avez l'item : {{item.nom}} ! </h1>
+	<h1>{{item.nom}} [{{maniement}}]</h1>
+	({{item.rarete}})
+	<ul>
+		<li>Niveau requis : {{item.niveauRequis}}</li>
+		<li>Résistance {{item.res}}/{{item.resTotale}}</li>
+	</ul>
 	<table>
 		<tr>
-   			<th>Type</th>
-    		<th>Nom</th>
-    		<th>Resistance</th>
+   			<th></th>
+   			{{#item.caracs}}
+    		<th>{{nom}}</th>
+    		{{/item.caracs}}
   		</tr>
   		<tr>
-   			<td>{{item.type}}</td>
-    		<td>{{item.nom}}</td>
-    		<td>{{item.resTotale}}</td>
-  		</tr>
-  		
+  			{{#item.caracs}}
+    		<td>{{valeur}}</td>
+    		{{/item.caracs}}
+  		</tr>  		
 	</table>
 </body>
 </html>

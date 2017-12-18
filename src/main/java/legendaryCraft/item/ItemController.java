@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import legendaryCraft.item.enums.ItemType;
+
 @Controller
 @AutoConfigureDataMongo
 @RequestMapping("/app")
@@ -17,21 +19,33 @@ public class ItemController {
 	@Autowired
 	private ItemRepository repository;
 
-	@RequestMapping("/items")
-	public String items(Model model) {	
-		List<Item> items = repository.findAll();
-		model.addAttribute("items", items);
-		return "items";
-    }	
+//	@RequestMapping("/items")
+//	public String items(Model model, @RequestParam(value="type", required = false) String type) {	
+//		List<Item> items;
+//		if (type != null) {
+//			// la variable doit etre au format "CASQUE", "EPEE", etc...
+//			ItemType itemtype = ItemType.valueOf(type);
+//			items = repository.findByItemType(itemtype);
+//		} else {
+//			items = repository.findAll();
+//		}
+//		model.addAttribute("items", items);
+//		return "items";
+//    }
 	
 	@RequestMapping("/item")
-	public String itemAvecNom(@RequestParam("nom") String nom,Model model) {
+	public String itemAvecNom(@RequestParam("id") String id,Model model) {
 		//return repository.findByNom(nom);
-		Item item = repository.findByNom(nom);
+		Item item = repository.findOne(id);
 		if (item == null){
 			return "erreur";
 		}
 		model.addAttribute("item", item);
+		if (item.isADeuxMains) {
+			model.addAttribute("maniement", "2M");
+		} else {
+			model.addAttribute("maniement", "1M");
+		}
 		return "item";
     }
 }
