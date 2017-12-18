@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+</head>
+<body>
+	<h1>Bienvenu sur Legendary Craft</h1>
+	{{#nonConnecte}}
+		<a href="/logout">Se Déconnecter</a>
+	{{/nonConnecte}}
+	{{#estConnecte}}
+		<a href="/app/login">Se Connecter</a>
+		<form action="/app/joueur">
+			<input type="submit" value="Accéder à mes personnages">
+		</form>
+		<form action="/app/joueurs">
+			<input type="submit" value="Voir tous les joueurs">
+		</form>
+	{{/estConnecte}}
+</body>
+</html>

@@ -36,7 +36,7 @@ public class ItemRestController {
 		return repository.findOne(id);			
     }
 	
-	@RequestMapping("/item")
+	@RequestMapping("/item/")
 	public Item itemAvecNom(@RequestParam("nom") String nom,Model model) {
 		return repository.findByNom(nom);
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import legendaryCraft.notification.NotificationDurability;
@@ -41,6 +42,34 @@ public class JoueurController {
 		model.addAttribute("joueur", j);
 		return "joueur";
 
+	}
+	
+	@RequestMapping("/autre_joueur/{id}")
+	public String personnagesAutreJoueur(Model model, @PathVariable("id") String id) {
+		Joueur j = joueurRepository.findOne(id);
+		List<Personnage> personnages = personnageRepository.findByJoueur(j);
+		
+		model.addAttribute("estConnecte", false);
+		model.addAttribute("personnages", personnages);
+		model.addAttribute("joueur", j);
+		return "joueur";
+	}
+	
+	@RequestMapping("/joueurs")
+	public String listeDesJoueurs(Principal principal, Model model) {
+		List<Joueur> joueurs = joueurRepository.findAll();
+		
+		int indexToRemove = -1;
+		for (int i = 0; i < joueurs.size() - 1; i++) {
+			if (joueurs.get(i).getLogin().equals(principal.getName())) {
+				indexToRemove = i;
+			}
+		}
+		if (indexToRemove != -1) {
+			joueurs.remove(indexToRemove);
+		}
+		model.addAttribute("joueurs", joueurs);
+		return "joueurs";
 	}
 }
 
