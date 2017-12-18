@@ -24,7 +24,7 @@ public class ScheduledTasks {
 	@Autowired
 	private JmsTemplate jms;
 	
-	@Scheduled(fixedRate = 5000)
+	@Scheduled(fixedRate = 20000)
 	public void lowerDurability() {
 		log.info("Diminution de la durabilité de chaque item de chaque utilisateur");
 		// récupérer les items de chaque user et diminuer la résistance

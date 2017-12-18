@@ -6,6 +6,34 @@
 </head>
 <body>
 	<h1>Personnage : {{personnage.nom}}</h1>
+	Niveau {{personnage.niveau}}
+	Equipement
+	<ul>
+		<li>Casque : {{#personnage.casque.nom}}{{personnage.casque.nom}}{{/personnage.casque.nom}}</li>
+		<li>Armure : {{#personnage.armure.nom}}{{personnage.armure.nom}}{{/personnage.armure.nom}}</li>
+		<li>Ceinture : {{#personnage.ceinture.nom}}{{personnage.ceinture.nom}}{{/personnage.ceinture.nom}}</li>
+		<li>Pantalon : {{#personnage.pantalon.nom}}{{personnage.pantalon.nom}}{{/personnage.pantalon.nom}}</li>
+		<li>Bottes : {{#personnage.bottes.nom}}{{personnage.bottes.nom}}{{/personnage.bottes.nom}}</li>
 
+		<li>Amulette : {{#personnage.amulette.nom}}{{personnage.amulette.nom}}{{/personnage.amulette.nom}}</li>
+		<li>AnneauDroit : {{#personnage.anneauDroit.nom}}{{personnage.anneauDroit.nom}}{{/personnage.anneauDroit.nom}}</li>
+		<li>AnneauGauche : {{#personnage.anneauGauche.nom}}{{personnage.anneauGauche.nom}}{{/personnage.anneauGauche.nom}}</li>
+	
+		<li>Arme : {{#personnage.arme.nom}}{{personnage.arme.nom}}{{/personnage.arme.nom}}</li>
+		 <li>Armure : {{#personnage.bouclier.nom}}{{personnage.bouclier.nom}}{{/personnage.bouclier.nom}}</li>
+	</ul>
+	<h3>Liste des items </h3>
+	<form action="/app/personnage/{{personnage.id}}" method="POST">
+	Rechercher : <select id="type" name="type">{{#itemtypes}}<option value="{{nom}}">{{nom}}</option>{{/itemtypes}}</select>
+	<input type="submit" value="Confirmer">
+	</form>
+	<ul>
+		{{#items}}
+  			<li>
+  				{{nom}}<form action="/app/item/{{id}}"><input type="submit" value="Détails"></form>
+  				<form action="/app/item/equiper/{{id}}"><input type="submit" value="Equiper"></form>
+  			</li>
+  		{{/items}}
+  	</ul>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class NotificationDurability {
 		return personnage;
 	}
 
-	public void setJoueur(Personnage p) {
+	public void setPersonnage(Personnage p) {
 		this.personnage = p;
 	}
 

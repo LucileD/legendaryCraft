@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import legendaryCraft.item.enums.ItemType;
 import legendaryCraft.item.enums.Rarete;
+import legendaryCraft.personnage.Personnage;
 
 @Repository
 public interface ItemRepository extends MongoRepository<Item, String>  {
@@ -20,4 +21,6 @@ public interface ItemRepository extends MongoRepository<Item, String>  {
 	public List<Item> findByRarete(Rarete rarete);
 	
 	public List<Item> findByItemTypeAndRarete(ItemType type, Rarete rarete);
+
+	public List<Item> findByPersonnage(Personnage personnage);
 }

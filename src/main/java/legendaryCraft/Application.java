@@ -61,28 +61,6 @@ public class Application {
     
     @Bean
     public CommandLineRunner demo(ItemRepository itemRepository, PersonnageRepository personnageRepository, JoueurRepository joueurRepository){
-    	ArrayList<Caracteristique> cars = new ArrayList<Caracteristique>();
-    	
-    	Caracteristique res = new Caracteristique(CaracteristiqueIntitule.RESISTANCE, 10);
-    	cars.add(res);
-    	
-    	Item casque = new Item(ItemType.CASQUE, "Heaume de chevalier", 40, cars, Rarete.COMMON, 1, false, null);
-    	
-    	Item armure = new Item(ItemType.ARMURE, "Armure de basse qualité magique", 45, cars, Rarete.RARE, 1, false, null);
-    	
-    	cars.remove(res);
-    	
-    	Caracteristique deg = new Caracteristique(CaracteristiqueIntitule.DOMMAGE, 15);
-    	cars.add(deg);
-    	
-    	Item epee = new Item(ItemType.EPEE, "Lame de Duncan", 50, cars, Rarete.RARE, 1, true, null);
-    	
-    	Item masse = new Item(ItemType.MASSE, "Masse de son père", 20, cars, Rarete.COMMON, 1, false, null);
-    	
-    	itemRepository.save(casque);
-    	itemRepository.save(armure);
-    	itemRepository.save(epee);
-    	itemRepository.save(masse);
 //    	armeRepository.save(e);
 //    	armeRepository.save(m);
     	
@@ -98,9 +76,35 @@ public class Application {
     	joueurRepository.save(j1);
     	joueurRepository.save(j2);
     	
-    	personnageRepository.save(new Personnage("Truc", j1, 2));
-    	personnageRepository.save(new Personnage("Muche", j1, 180));
-    	personnageRepository.save(new Personnage("Zoé", j2, 2));
+    	Personnage truc = new Personnage("Truc", j1, 2);
+    	Personnage muche = new Personnage("Muche", j1, 2);
+    	Personnage zoe = new Personnage("Zoé", j2, 2);
+    	personnageRepository.save(truc);
+    	personnageRepository.save(muche);
+    	personnageRepository.save(zoe);
+    	
+    	ArrayList<Caracteristique> cars = new ArrayList<Caracteristique>();
+    	
+    	Caracteristique res = new Caracteristique(CaracteristiqueIntitule.RESISTANCE, 10);
+    	cars.add(res);
+    	
+    	Item casque = new Item(ItemType.CASQUE, "Heaume de chevalier", 40, cars, Rarete.COMMON, 1, false, truc);
+    	
+    	Item armure = new Item(ItemType.ARMURE, "Armure de basse qualité magique", 45, cars, Rarete.RARE, 1, false, truc);
+    	
+    	cars.remove(res);
+    	
+    	Caracteristique deg = new Caracteristique(CaracteristiqueIntitule.DOMMAGE, 15);
+    	cars.add(deg);
+    	
+    	Item epee = new Item(ItemType.EPEE, "Lame de Duncan", 50, cars, Rarete.RARE, 1, true, truc);
+    	
+    	Item masse = new Item(ItemType.MASSE, "Masse de son père", 20, cars, Rarete.COMMON, 1, false, truc);
+    	
+    	itemRepository.save(casque);
+    	itemRepository.save(armure);
+    	itemRepository.save(epee);
+    	itemRepository.save(masse);
     	
     	return args ->{
 

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import legendaryCraft.item.Item;
+import legendaryCraft.item.ItemRepository;
+import legendaryCraft.item.enums.ItemType;
 
 
 @Controller
@@ -29,11 +31,27 @@ public class PersonnageController {
 	
 	@Autowired
 	private JoueurRepository joueurRepository;
+	
+	@Autowired
+	private ItemRepository itemRepository;
 
 	@RequestMapping("/personnage/{id}")
-	public String personnage(@PathVariable String id, Model model) {
+	public String personnage(@PathVariable String id, @RequestParam(value="type", required = false) String type, Model model) {
 		Personnage personnage = repository.findOne(id);
+		System.out.println();
+		List<Item> items = itemRepository.findByPersonnage(personnage);
+		if (type != null) {
+			// la variable doit etre au format "CASQUE", "EPEE", etc...
+			ItemType itemtype = ItemType.valueOf(type.toUpperCase());
+			items = itemRepository.findByItemType(itemtype);
+		} else {
+			items = itemRepository.findAll();
+		}
+		ItemType[] itemtypes = ItemType.values();
+		
 		model.addAttribute("personnage", personnage);
+		model.addAttribute("items", items);
+		model.addAttribute("itemtypes", itemtypes);
 		return "personnage";
 	}
 	

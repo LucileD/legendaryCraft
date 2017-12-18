@@ -14,7 +14,7 @@ public enum ItemType {
 	BOTTES("Bottes", false),
 	ANNEAU("Anneau", false),
 	AMULETTE("Amulette", false),
-	EPEE("Epée", true),
+	EPEE("Epee", true),
 	ARC("Arc", true),
 	BATON("Baton", true),
 	DAGUE("Dague", true),

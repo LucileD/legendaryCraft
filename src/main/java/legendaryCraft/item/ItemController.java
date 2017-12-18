@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,8 +44,8 @@ public class ItemController {
 //		return "items";
 //    }
 	
-	@RequestMapping("/item")
-	public String itemAvecNom(Principal principal, @RequestParam("id") String id,Model model) {
+	@RequestMapping("/item/{id}")
+	public String itemAvecNom(Principal principal, @PathVariable("id") String id, Model model) {
 		Item item = repository.findOne(id);
 		if (item == null){
 			return "erreur";
