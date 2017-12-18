@@ -20,12 +20,29 @@
 	    		<td>{{niveau}}</td>
 	  		</tr>
   		{{/personnages}}
+  		{{#estConnecte}}
   		<tr>
-	    	<td><a href="/app/nouv_personnage/">céer un nouveau personnage</a></td>
+	    	<td><a href="/app/nouv_personnage/">créer un nouveau personnage</a></td>
 	  	</tr>
-  		
+	  	{{/estConnecte}}
 	</table>
 	<a href="/logout" >Déconnexion</a>
+	{{#estConnecte}}
+	<h4>Notification sur les items qui n'ont plus de résistance</h4>
+
+  	{{#notifs}}
+  		
+	    <ul>
+	    	<li>nom du personnage : {{personnage.nom}}</li>
+	    	<li>nom de l'item : {{nomItem}}</li>
+	    		
+	    </ul>
+	    <form action="/app/notification/supprimer/{{id}}"><input type="submit" value="Supprimer"></form>
+  	{{/notifs}}
+  	{{/estConnecte}}
+	</br>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out"/>
     </form>
 </body>
 </html>

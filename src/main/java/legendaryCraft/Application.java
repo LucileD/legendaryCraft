@@ -76,7 +76,7 @@ public class Application {
     	joueurRepository.save(j1);
     	joueurRepository.save(j2);
     	
-    	Personnage truc = new Personnage("Truc", j1, 2);
+    	Personnage truc = new Personnage("Truc", j1, 90);
     	Personnage muche = new Personnage("Muche", j1, 2);
     	Personnage zoe = new Personnage("Zoé", j2, 2);
     	personnageRepository.save(truc);
@@ -90,7 +90,9 @@ public class Application {
     	
     	Item casque = new Item(ItemType.CASQUE, "Heaume de chevalier", 40, cars, Rarete.COMMON, 1, false, truc);
     	
-    	Item armure = new Item(ItemType.ARMURE, "Armure de basse qualité magique", 45, cars, Rarete.RARE, 1, false, truc);
+    	Item armure = new Item(ItemType.ARMURE, "Armure de basse qualité magique", 45, cars, Rarete.RARE, 10, false, truc);
+    	
+    	Item bouclier = new Item(ItemType.BOUCLIER, "Bouclier de bois", 10, cars, Rarete.COMMON, 1, false, truc);
     	
     	cars.remove(res);
     	
@@ -98,13 +100,16 @@ public class Application {
     	cars.add(deg);
     	
     	Item epee = new Item(ItemType.EPEE, "Lame de Duncan", 50, cars, Rarete.RARE, 1, true, truc);
+    	Item epeepetite = new Item(ItemType.EPEE, "mini lame des eaux", 2, cars, Rarete.COMMON, 1, false, truc);
     	
-    	Item masse = new Item(ItemType.MASSE, "Masse de son père", 20, cars, Rarete.COMMON, 1, false, truc);
+    	Item masse = new Item(ItemType.MASSE, "Masse de son père", 20, cars, Rarete.COMMON, 99, false, truc);
     	
+    	itemRepository.save(epeepetite);
     	itemRepository.save(casque);
     	itemRepository.save(armure);
     	itemRepository.save(epee);
     	itemRepository.save(masse);
+    	itemRepository.save(bouclier);
     	
     	return args ->{
 

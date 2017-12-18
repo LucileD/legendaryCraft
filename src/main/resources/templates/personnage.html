@@ -2,12 +2,12 @@
 <html>
 <head>
 	<title>{{personnage.nom}}</title>
-	<link rel="stylesheet" type="text/css" href="../item.css">
+	<link rel="stylesheet" type="text/css" href="../../item.css">
 </head>
 <body>
 	<h1>Personnage : {{personnage.nom}}</h1>
-	Niveau {{personnage.niveau}}
-	Equipement
+	<p>Niveau {{personnage.niveau}}</p>
+	<p>Equipement</p>
 	<ul>
 		<li>Casque : {{#personnage.casque.nom}}{{personnage.casque.nom}}{{/personnage.casque.nom}}</li>
 		<li>Armure : {{#personnage.armure.nom}}{{personnage.armure.nom}}{{/personnage.armure.nom}}</li>
@@ -20,20 +20,50 @@
 		<li>AnneauGauche : {{#personnage.anneauGauche.nom}}{{personnage.anneauGauche.nom}}{{/personnage.anneauGauche.nom}}</li>
 	
 		<li>Arme : {{#personnage.arme.nom}}{{personnage.arme.nom}}{{/personnage.arme.nom}}</li>
-		 <li>Armure : {{#personnage.bouclier.nom}}{{personnage.bouclier.nom}}{{/personnage.bouclier.nom}}</li>
+		 <li>Bouclier : {{#personnage.bouclier.nom}}{{personnage.bouclier.nom}}{{/personnage.bouclier.nom}}</li>
 	</ul>
-	<h3>Liste des items </h3>
-	<form action="/app/personnage/{{personnage.id}}" method="POST">
-	Rechercher : <select id="type" name="type">{{#itemtypes}}<option value="{{nom}}">{{nom}}</option>{{/itemtypes}}</select>
-	<input type="submit" value="Confirmer">
-	</form>
-	<ul>
-		{{#items}}
-  			<li>
-  				{{nom}}<form action="/app/item/{{id}}"><input type="submit" value="Détails"></form>
-  				<form action="/app/item/equiper/{{id}}"><input type="submit" value="Equiper"></form>
-  			</li>
-  		{{/items}}
-  	</ul>
+	{{#estMonPerso}}
+		<!-- STATS DU PERSONNAGE -->
+		<table>
+			<tr>
+			{{#caracs}}
+				<th>{{nom}}</th>
+			{{/caracs}}
+			</tr>
+			<tr>
+			{{#stats}}
+				<td>{{.}}</td>
+			{{/stats}}
+			</tr>
+		</table>
+		
+		<!-- INVENTAIRE -->
+		<h3>Liste des items </h3>
+		<!-- tri des items -->
+		<form action="/app/item/craft/{{personnage.id}}"><input type="submit" value="Craft un nouvel item"></form>
+		<form action="/app/personnage/{{personnage.id}}" method="POST">
+		<p>Rechercher : </p>
+		<select id="type" name="type"><option value="Tout">Tout</option>{{#itemtypes}}<option value="{{nom}}">{{nom}}</option>{{/itemtypes}}</select>
+		<select id="rarete" name="rarete">
+			<option value="Tout">Tout</option>
+			<option value="LEGENDARY">Légendaire</option>
+			<option value="RARE">Rare</option>
+			<option value="COMMON">Commun</option>
+		</select>
+		<input type="submit" value="Confirmer">
+		</form>
+		
+		<!-- contenu de l'inventaire affiché -->
+		
+		<ul>
+			{{#items}}
+	  			<li>
+	  				{{nom}}<form action="/app/item/{{personnage.id}}/{{id}}"><input type="submit" value="Détails"></form>
+	  				<form action="/app/personnage/{{personnage.id}}/equiper/{{id}}"><input type="submit" value="Equiper"></form>
+	  				<form action="/app/item/supprimer/{{personnage.id}}/{{id}}"><input type="submit" value="Supprimer"></form>
+	  			</li>
+	  		{{/items}}
+	  	</ul>
+  	{{/estMonPerso}}
 </body>
 </html>

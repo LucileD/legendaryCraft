@@ -5,15 +5,14 @@
 	<link rel="stylesheet" type="text/css" href="../item.css">
 </head>
 <body>
-	<h1>{{item.nom}} [{{maniement}}]</h1>
-	({{item.rarete}})
+	<h1>{{item.nom}} {{#maniement}}[{{maniement}}]{{/maniement}}</h1>
+	<p>({{item.rarete}})</p>
 	<ul>
 		<li>Niveau requis : {{item.niveauRequis}}</li>
 		<li>Résistance {{item.res}}/{{item.resTotale}}</li>
 	</ul>
 	<table>
 		<tr>
-   			<th></th>
    			{{#item.caracs}}
     		<th>{{nom}}</th>
     		{{/item.caracs}}
@@ -24,5 +23,6 @@
     		{{/item.caracs}}
   		</tr>  		
 	</table>
+	<a href="/app/personnage/{{idPersonnage}}">Retour au personnage</a>
 </body>
 </html>

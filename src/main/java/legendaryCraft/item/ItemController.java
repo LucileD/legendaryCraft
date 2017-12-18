@@ -1,7 +1,10 @@
 package legendaryCraft.item;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
@@ -44,27 +47,36 @@ public class ItemController {
 //		return "items";
 //    }
 	
-	@RequestMapping("/item/{id}")
-	public String itemAvecNom(Principal principal, @PathVariable("id") String id, Model model) {
+	@RequestMapping("/item/{idPersonnage}/{id}")
+	public String itemAvecNom(@PathVariable("idPersonnage") String idPersonnage, @PathVariable("id") String id, Model model) {
 		Item item = repository.findOne(id);
 		if (item == null){
 			return "erreur";
 		}
 		model.addAttribute("item", item);
-		if (item.isADeuxMains) {
-			model.addAttribute("maniement", "2M");
-		} else {
-			model.addAttribute("maniement", "1M");
+		if (item.isArme()) {
+			if (item.isADeuxMains) {
+				model.addAttribute("maniement", "2M");
+			} else {
+				model.addAttribute("maniement", "1M");
+			}
 		}
+		model.addAttribute("idPersonnage", idPersonnage);
 		return "item";
     }
 	
-	@RequestMapping("/craft")
-	public String craftItem(Principal principal, @RequestParam("id") String idPersonnage, Model model) {
+	@RequestMapping("/item/supprimer/{idPersonnage}/{idItem}")
+	public void supprimerItem(Model model, @PathVariable("idPersonnage") String idPersonnage, @PathVariable("idItem") String idItem, HttpServletResponse response) throws IOException {
+		Item item = repository.findOne(idItem);
+		repository.delete(item);
+		response.sendRedirect("/app/personnage/" + idPersonnage);
+	}
+	
+	@RequestMapping("/item/craft/{idPersonnage}")
+	public String craftItem(Principal principal, @PathVariable("idPersonnage") String idPersonnage, Model model) {
 		Personnage personnage = pRepository.findOne(idPersonnage);
 		if (personnage == null)
 			return "erreur";
-//		if (principal.getName() != jRepository.findByLogin(personnage.getJoueur()));
 		Item item = CraftUtils.craftItem(personnage);
 		repository.save(item);
 
