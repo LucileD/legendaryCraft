@@ -6,20 +6,16 @@
 </head>
 <body>
 	<h1>Liste des items </h1>
-	<table>
-		<tr>
-   			<th>Type</th>
-    		<th>Nom</th>
-    		<th>Resistance</th>
-  		</tr>
-  		{{#items}}
-  		<tr>
-   			<td>{{type}}</td>
-    		<td>{{nom}}</td>
-    		<td>{{resTotale}}</td>
-  		</tr>
+	<form action="cette meme page">
+	Rechercher : <select>{{#itemtype}}<option value={{nom}}>{{nom}}</option>{{/itemtype}}</select>
+	<input type="submit" value="Confirmer">
+	</form>
+	<ul>
+		{{#items}}
+  			<li>
+  				{{nom}}<form action="/app/item?id={{id}}"><input type="submit" value="Détails"></form> <!-- bouton d'équipement ? -->
+  			</li>
   		{{/items}}
-  		
-	</table>
+  	</ul>
 </body>
 </html>

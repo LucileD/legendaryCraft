@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import legendaryCraft.personnage.Personnage;
+
 @RestController
 @AutoConfigureDataMongo
 @RequestMapping("/api")
@@ -20,7 +22,8 @@ public class ItemRestController {
 	@Autowired
 	private ItemRepository repository;
 	
-	private JoueurRepository jRepository;
+	@Autowired
+	private PersonnageRepository pRepository;
 
 	@RequestMapping("/items")
 	public List<Item> items(Model model) {	
@@ -53,10 +56,10 @@ public class ItemRestController {
 	}
 	
 	@RequestMapping(value="/craft", method = RequestMethod.GET)
-	public Item craftItem () {
+	public Item craftItem (@RequestParam("personnage") String nom) {
 		// récupérer l'id joueur d'une manière ou d'une autre
-		Joueur joueur = jRepository.findOne(id_joueur);
-		Item item = CraftUtils.craftItem(joueur);
+		Personnage personnage = pRepository.findByName(nom);
+		Item item = CraftUtils.craftItem(personnage);
 		return repository.save(item);
 	}
 }

@@ -31,6 +31,7 @@ import legendaryCraft.item.enums.ItemType;
 import legendaryCraft.item.enums.Rarete;
 import legendaryCraft.notification.NotificationDurability;
 import legendaryCraft.personnage.Joueur;
+import legendaryCraft.personnage.JoueurRepository;
 import legendaryCraft.personnage.Personnage;
 import legendaryCraft.personnage.PersonnageRepository;
 
@@ -85,15 +86,6 @@ public class Application {
 //    	armeRepository.save(e);
 //    	armeRepository.save(m);
     	
-//    	repository.save(new Item("boucle d'oreilles","nomb",10));
-//    	repository.save(new Item("ceinture","c1",20));
-//    	repository.save(new Item("épée","e1",100));
-
-//    	personnageRepository.save(new Personnage("perso1", new Joueur(), 2, null, null, null, null, null, null, null, null, null, null));
-//    	personnageRepository.save(new Personnage("perso2", new Joueur(), 8, null, null, null, null, null, null, null, null, null, null));
-   
-    	personnageRepository.save(new Personnage("Zoe", new Joueur(), 2));
-    	personnageRepository.save(new Personnage("Timoleon", new Joueur(), 2));
     	
     	return args ->{
 

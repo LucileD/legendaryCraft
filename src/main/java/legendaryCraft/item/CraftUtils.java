@@ -7,6 +7,7 @@ import java.util.Random;
 import legendaryCraft.item.enums.ItemType;
 import legendaryCraft.item.enums.Rarete;
 import legendaryCraft.personnage.Joueur;
+import legendaryCraft.personnage.Personnage;
 
 public class CraftUtils {
 
@@ -21,7 +22,7 @@ public class CraftUtils {
 	private final static String[] rareNames = {"magique", "de valeur", "du chevalier", "du mage", "du voleur", "de qualité"};
 	private final static String[] commonNames = {"de mauvaise facture", "de fer", "d'acier", "d'écuyer", "d'apprenti", "de marchand"};
 	
-	public static Item craftItem(Joueur joueur) {
+	public static Item craftItem(Personnage personnage) {
 		/* variables pour la génération */
 		int nbStats;
 		int valStats;
@@ -33,7 +34,7 @@ public class CraftUtils {
 		String nom;
 		List<Caracteristique> caracs = new ArrayList<Caracteristique>();
 		Rarete rarete;
-		int niveauRequis = randomGen.nextInt(30);
+		int niveauRequis = randomGen.nextInt(100);
 		boolean aDeuxMains = false;
 	
 		
@@ -85,7 +86,7 @@ public class CraftUtils {
 		}
 		
 		//création de l'item avec toutes les données générées au dessus
-		return new Item(type, nom, valStats, caracs, rarete, niveauRequis, aDeuxMains, joueur);
+		return new Item(type, nom, valStats, caracs, rarete, niveauRequis, aDeuxMains, personnage);
 	}
 	
 }
