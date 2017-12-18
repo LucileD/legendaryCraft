@@ -11,5 +11,5 @@ import legendaryCraft.personnage.Personnage;
 public interface NotificationDurabilityRepository extends MongoRepository<NotificationDurability, String> {
 	
 	public List<NotificationDurability> findByPersonnageAndNomItem(Personnage personnage, String nomItem);
-	
+	public List<NotificationDurability> findByPersonnage(Personnage personnage);
 }

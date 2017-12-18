@@ -13,13 +13,15 @@
    			<th>Nom</th>
     		<th>Niveau</th>
   		</tr>
-  		{{#personnages}}
-  		
+  		{{#notifs}}
 	  		<tr>
-	    		<td><a href="/app/personnage/{{id}}">{{nom}}</a></td>
-	    		<td>{{niveau}}</td>
+	  		{{#list}}
+	    		<td><a href="/app/personnage/{{personnage.id}}">{{personnage.nom}}</a></td>
+	    		<td>{{personnage.niveau}}</td>
+	    		<td>{{notifs.nomItem}}</td>
 	  		</tr>
-  		{{/personnages}}
+	  		{{/list}}
+  		{{/notifs}}
   		<tr>
 	    	<td><a href="/app/nouv_personnage/">céer un nouveau personnage</a></td>
 	  	</tr>
