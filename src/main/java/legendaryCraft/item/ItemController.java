@@ -63,10 +63,12 @@ public class ItemController {
 		repository.save(item);
 
 		model.addAttribute("idPersonnage", personnage.getId());
-		if (item.isADeuxMains) {
-			model.addAttribute("maniement", "2M");
-		} else {
-			model.addAttribute("maniement", "1M");
+		if (item.isArme()) {
+			if (item.isADeuxMains) {
+				model.addAttribute("maniement", "2M");
+			} else {
+				model.addAttribute("maniement", "1M");
+			}
 		}
 		model.addAttribute("item", item);
 		return "craft";
