@@ -26,12 +26,12 @@ public class ItemRestController {
 	@Autowired
 	private PersonnageRepository pRepository;
 
-	@RequestMapping("/items")
+	@RequestMapping("/item")
 	public List<Item> items(Model model) {	
 		return repository.findAll();
     }	
 	
-	@RequestMapping("/items/{id}")
+	@RequestMapping("/item/{id}")
 	public Item itemAvecId(@PathVariable String id) {
 		return repository.findOne(id);			
     }
@@ -39,6 +39,12 @@ public class ItemRestController {
 	@RequestMapping("/item")
 	public Item itemAvecNom(@RequestParam("nom") String nom,Model model) {
 		return repository.findByNom(nom);
+    }
+	
+	@RequestMapping(value="/item/personnage", method = RequestMethod.POST)
+	public List<Item> itemAvecIdPersonnage(@RequestBody Personnage personnage) {
+		return repository.findByPersonnage(personnage);
+		
     }
 	
 	@RequestMapping(value="/item", method = RequestMethod.POST)
