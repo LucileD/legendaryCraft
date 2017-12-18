@@ -15,14 +15,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		 http.csrf().disable()
 	    .authorizeRequests()
-	    .anyRequest().authenticated()
-	    .and()
+        	.antMatchers("/index.html").permitAll()
+		    .anyRequest().authenticated()
+		    .and()
 	    .formLogin()
-	    .loginPage("/app/login")
-	    .permitAll()
-	    .and()
-	    .logout()
-	    .permitAll();
+		    .loginPage("/app/login")
+		    .permitAll()
+		    .and()
+		 .logout()    //logout configuration
+			.logoutSuccessUrl("/index.html");
 	}
 	
 	@Autowired
@@ -30,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         auth.inMemoryAuthentication()
             .withUser("username").password("password").roles("USER");
         auth.inMemoryAuthentication()
-        	.withUser("test").password("test").roles("USER");
+        	.withUser("Dorian").password("mdp").roles("USER");
         auth.inMemoryAuthentication()
     		.withUser("truc").password("muche").roles("USER");
     }
