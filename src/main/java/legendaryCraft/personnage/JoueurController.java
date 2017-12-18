@@ -24,10 +24,8 @@ public class JoueurController {
 	
 	@RequestMapping("/joueur")
 	public String personnages(Principal principal, Model model) {
-		System.out.println(principal);
-		System.out.println(principal.getName());
 		Joueur j = joueurRepository.findByLogin(principal.getName());
-		
+	
 		List<Personnage> personnages = personnageRepository.findByJoueur(j);
 		model.addAttribute("personnages", personnages);
 		return "personnages";

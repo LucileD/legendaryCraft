@@ -13,8 +13,6 @@ public class Joueur {
 	
 	protected String mdp;
 	
-	protected List<Personnage> personnages;
-	
 	@Id
 	protected String id;
 	

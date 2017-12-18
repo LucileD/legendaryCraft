@@ -9,6 +9,5 @@ public interface JoueurRepository extends MongoRepository<Joueur, String>  {
 	public Joueur findByPseudo (String pseudo);
 	public Joueur findById (String id);
 	public Joueur findByLogin (String login);
-
 }
 
