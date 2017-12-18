@@ -59,7 +59,7 @@ public class ItemRestController {
 	@RequestMapping(value="/craft", method = RequestMethod.GET)
 	public Item craftItem (@RequestParam("personnage") String id) {
 		// récupérer l'id joueur d'une manière ou d'une autre
-		Personnage personnage = pRepository.findByNom(nom);
+		Personnage personnage = pRepository.findOne(id);
 		Item item = CraftUtils.craftItem(personnage);
 		return repository.save(item);
 	}

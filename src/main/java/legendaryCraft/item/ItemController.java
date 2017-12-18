@@ -1,5 +1,6 @@
 package legendaryCraft.item;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import legendaryCraft.item.enums.ItemType;
+import legendaryCraft.personnage.JoueurRepository;
 import legendaryCraft.personnage.Personnage;
 import legendaryCraft.personnage.PersonnageRepository;
 
@@ -23,6 +25,9 @@ public class ItemController {
 	
 	@Autowired
 	private PersonnageRepository pRepository;
+	
+	@Autowired
+	private JoueurRepository jRepository;
 
 //	@RequestMapping("/items")
 //	public String items(Model model, @RequestParam(value="type", required = false) String type) {	
@@ -39,8 +44,7 @@ public class ItemController {
 //    }
 	
 	@RequestMapping("/item")
-	public String itemAvecNom(@RequestParam("id") String id,Model model) {
-		//return repository.findByNom(nom);
+	public String itemAvecNom(Principal principal, @RequestParam("id") String id,Model model) {
 		Item item = repository.findOne(id);
 		if (item == null){
 			return "erreur";
@@ -55,10 +59,11 @@ public class ItemController {
     }
 	
 	@RequestMapping("/craft")
-	public String craftItem(@RequestParam("id") String idPersonnage, Model model) {
+	public String craftItem(Principal principal, @RequestParam("id") String idPersonnage, Model model) {
 		Personnage personnage = pRepository.findOne(idPersonnage);
 		if (personnage == null)
 			return "erreur";
+//		if (principal.getName() != jRepository.findByLogin(personnage.getJoueur()));
 		Item item = CraftUtils.craftItem(personnage);
 		repository.save(item);
 
