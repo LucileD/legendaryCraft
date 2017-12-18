@@ -36,9 +36,10 @@
 	    	<li>nom de l'item : {{nomItem}}</li>
 	    		
 	    </ul>
+	    <form action="/app/notification/supprimer/{{id}}"><input type="submit" value="Supprimer"></form>
   	{{/notifs}}
   	{{/estConnecte}}
-
+	</br>
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Sign Out"/>
     </form>

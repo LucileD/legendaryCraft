@@ -44,7 +44,7 @@ public class JoueurController {
 
 	}
 	
-	@RequestMapping("/autre_joueur/{id}")
+	@RequestMapping("/joueur/{id}")
 	public String personnagesAutreJoueur(Model model, @PathVariable("id") String id) {
 		Joueur j = joueurRepository.findOne(id);
 		List<Personnage> personnages = personnageRepository.findByJoueur(j);
