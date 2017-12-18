@@ -1,30 +1,35 @@
 package legendaryCraft.notification;
 
-import java.util.List;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import legendaryCraft.item.Item;
 import legendaryCraft.personnage.Joueur;
 
+@Document(collection = "NotificationDurability")
 public class NotificationDurability {
+
+	@Id
+	protected String id;
 	
 	private Joueur joueur;
 	
-	private List<Item> items;
-	
+	private Item item;
 	
 	public NotificationDurability() {
-		
+		this.id = new ObjectId().toString();
 	}
 	
-	public NotificationDurability(Joueur j, List<Item> items){
+	public NotificationDurability(Joueur j, Item item){
+		this.id = new ObjectId().toString();
 		this.joueur = j;
-		this.items=items;
+		this.item = item;
 	}
 	
 	@Override
     public String toString() {
-		//TODO
-        return String.format("notif");
+		return "NotificationDurability [id=" + id + ", joueur=" + joueur + ", item=" + item + "]";
     }
 
 	public Joueur getJoueur() {
@@ -35,13 +40,12 @@ public class NotificationDurability {
 		this.joueur = j;
 	}
 
-	public List<Item> getItems() {
-		return items;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setItems(List<Item> items) {
-		this.items = items;
+	public void setItem(Item item) {
+		this.item = item;
 	}
-
 	
 }

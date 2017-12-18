@@ -19,6 +19,8 @@ public class ItemRestController {
 	
 	@Autowired
 	private ItemRepository repository;
+	
+	private JoueurRepository jRepository;
 
 	@RequestMapping("/items")
 	public List<Item> items(Model model) {	
@@ -48,5 +50,13 @@ public class ItemRestController {
 	@RequestMapping(value="/item", method = RequestMethod.DELETE )
 	public void deleteItem (@RequestBody Item item){
 		repository.delete(item);
+	}
+	
+	@RequestMapping(value="/craft", method = RequestMethod.GET)
+	public Item craftItem () {
+		// récupérer l'id joueur d'une manière ou d'une autre
+		Joueur joueur = jRepository.findOne(id_joueur);
+		Item item = CraftUtils.craftItem(joueur);
+		return repository.save(item);
 	}
 }

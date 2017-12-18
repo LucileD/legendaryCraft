@@ -33,8 +33,7 @@ public class ScheduledTasks {
 		for (Item i : items) {
 			int v = i.lowerRes();
 			if (v == 0) {
-				
-				jms.convertAndSend("mailbox", new NotificationDurability(/* à compléter */));
+				jms.convertAndSend("mailbox", new NotificationDurability(i.getJoueur(), i));
 			}
 		}
 		repository.save(items);

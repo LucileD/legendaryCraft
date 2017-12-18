@@ -29,7 +29,6 @@ import legendaryCraft.item.Item;
 import legendaryCraft.item.ItemRepository;
 import legendaryCraft.item.enums.ItemType;
 import legendaryCraft.item.enums.Rarete;
-import legendaryCraft.item.enums.Slot;
 import legendaryCraft.notification.NotificationDurability;
 import legendaryCraft.personnage.Joueur;
 import legendaryCraft.personnage.Personnage;
@@ -66,28 +65,18 @@ public class Application {
     	Caracteristique res = new Caracteristique(CaracteristiqueIntitule.RESISTANCE, 10);
     	cars.add(res);
     	
-//    	Casque c = new Casque("Heaume de chevalier", 40, cars, Rarete.COMMON, 1);
-//    	Armure a = new Armure("Armure de basse qualité magique", 45, cars, Rarete.RARE, 1);
-    	ArrayList<Slot> slots = new ArrayList<Slot>();
-
-    	slots.add(Slot.TETE);
-    	Item casque = new Item(ItemType.CASQUE, "Heaume de chevalier", 40, cars, Rarete.COMMON, 1, slots);
+    	Item casque = new Item(ItemType.CASQUE, "Heaume de chevalier", 40, cars, Rarete.COMMON, 1, false, null);
     	
-    	slots.clear();
-    	slots.add(Slot.HAUT);
-    	Item armure = new Item(ItemType.ARMURE, "Armure de basse qualité magique", 45, cars, Rarete.RARE, 1, slots);
+    	Item armure = new Item(ItemType.ARMURE, "Armure de basse qualité magique", 45, cars, Rarete.RARE, 1, false, null);
     	
-    	slots.clear();
     	cars.remove(res);
     	
     	Caracteristique deg = new Caracteristique(CaracteristiqueIntitule.DOMMAGE, 15);
     	cars.add(deg);
     	
-    	slots.add(Slot.MAIN_DROITE);
-    	Item epee = new Item(ItemType.EPEE, "Lame de Duncan", 50, cars, Rarete.RARE, 1, slots);
+    	Item epee = new Item(ItemType.EPEE, "Lame de Duncan", 50, cars, Rarete.RARE, 1, true, null);
     	
-    	slots.add(Slot.MAIN_GAUCHE);
-    	Item masse = new Item(ItemType.MASSE, "Masse de son père", 20, cars, Rarete.COMMON, 1, slots);
+    	Item masse = new Item(ItemType.MASSE, "Masse de son père", 20, cars, Rarete.COMMON, 1, false, null);
     	
     	itemRepository.save(casque);
     	itemRepository.save(armure);
@@ -127,22 +116,20 @@ public class Application {
 	    	}
 	    	
 	    	//ne marche pas, on verra plus tard
-	    	log.info("Récupérer les items à une main (droite)");
-	    	log.info("--------------------------------");
-	    	slots.clear();
-	    	slots.add(Slot.MAIN_DROITE);
-	    	for (Item arme : itemRepository.findBySlots(slots)) {
-	    		log.info(arme.toString());
-	    	}
+//	    	log.info("Récupérer les items à une main");
+//	    	log.info("--------------------------------");
+//	    	for (Item arme : itemRepository.findBySlots(slots)) {
+//	    		log.info(arme.toString());
+//	    	}
 	    	
-	    	log.info("Récupérer les items à deux mains");
-	    	log.info("--------------------------------");
-	    	slots.clear();
-	    	slots.add(Slot.MAIN_GAUCHE);
-	    	slots.add(Slot.MAIN_DROITE);
-	    	for (Item arme : itemRepository.findBySlots(slots)) {
-	    		log.info(arme.toString());
-	    	}
+//	    	log.info("Récupérer les items à deux mains");
+//	    	log.info("--------------------------------");
+//	    	slots.clear();
+//	    	slots.add(Slot.MAIN_GAUCHE);
+//	    	slots.add(Slot.MAIN_DROITE);
+//	    	for (Item arme : itemRepository.findBySlots(slots)) {
+//	    		log.info(arme.toString());
+//	    	}
 	    	
 	    };
     }
