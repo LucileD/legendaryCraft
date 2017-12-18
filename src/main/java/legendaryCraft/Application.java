@@ -93,8 +93,8 @@ public class Application {
 //    	personnageRepository.save(new Personnage("perso1", new Joueur(), 2, null, null, null, null, null, null, null, null, null, null));
 //    	personnageRepository.save(new Personnage("perso2", new Joueur(), 8, null, null, null, null, null, null, null, null, null, null));
    
-    	Joueur j1 = new Joueur("TrucMuche","mdp");
-    	Joueur j2 = new Joueur("Avast","mdp");
+    	Joueur j1 = new Joueur("TrucMuche","truc","muche");
+    	Joueur j2 = new Joueur("Avast","Dorian","mdp");
     	joueurRepository.save(j1);
     	joueurRepository.save(j2);
     	

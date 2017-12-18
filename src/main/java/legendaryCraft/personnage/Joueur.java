@@ -20,9 +20,10 @@ public class Joueur {
 		this.id = new ObjectId().toString();
 	}
 
-	public Joueur(String pseudo, String mdp) {
+	public Joueur(String pseudo,String login, String mdp) {
 		super();
 		this.pseudo = pseudo;
+		this.login = login;
 		this.mdp = mdp;
 		this.id = new ObjectId().toString();
 	}
