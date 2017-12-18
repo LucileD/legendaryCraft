@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import legendaryCraft.item.enums.ItemType;
 import legendaryCraft.item.enums.Rarete;
-import legendaryCraft.item.enums.Slot;
 
 @Document(collection = "Item")
 public class Item {
@@ -29,14 +28,15 @@ public class Item {
 	protected List<Caracteristique> caracs;
 	
 	protected Rarete rarete;
-
-	protected List<Slot> slots;
+	
+	protected boolean isADeuxMains;
 	
 	public Item() {
 		this.id = new ObjectId().toString();
+		this.isADeuxMains = false;
 	}
 	
-	public Item (ItemType type, String nom, int resTotale, List<Caracteristique> caracs, Rarete rarete, int niveauRequis, List<Slot> slots){
+	public Item (ItemType type, String nom, int resTotale, List<Caracteristique> caracs, Rarete rarete, int niveauRequis, boolean isADeuxMains){
 		this.itemType = type;
 		this.id = new ObjectId().toString();
 		this.res = resTotale;
@@ -45,7 +45,7 @@ public class Item {
 		this.caracs = caracs;
 		this.rarete = rarete;
 		this.niveauRequis = niveauRequis;
-		this.slots = slots;
+		this.isADeuxMains = isADeuxMains;
 	}
 
 	@Override
@@ -129,12 +129,12 @@ public class Item {
 		this.caracs = caracs;
 	}
 
-	public List<Slot> getSlots() {
-		return slots;
+	public boolean isAdeuxMains() {
+		return isADeuxMains;
 	}
 
-	public void setSlots(List<Slot> slots) {
-		this.slots = slots;
+	public void setAdeuxMains(boolean isAdeuxMains) {
+		this.isADeuxMains = isAdeuxMains;
 	}
 
 	public int lowerRes(){
@@ -143,4 +143,14 @@ public class Item {
 		return this.res;
 	}
 
+	/**
+	 * verifie si l'item appartient à un type d'arme
+	 * @return, true si l'item est une arme et false sinon
+	 */
+	public boolean isArme() {
+		if (this.itemType == ItemType.ARC || this.itemType == ItemType.BATON || this.itemType == ItemType.DAGUE || this.itemType == ItemType.EPEE || this.itemType == ItemType.HACHE || this.itemType == ItemType.MASSE) {
+			return true;
+		}
+		return false;
+	}
 }
