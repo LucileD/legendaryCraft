@@ -12,8 +12,10 @@ public class Receiver {
 	
 	@JmsListener(destination = "mailbox", containerFactory = "myFactory")
     public void receiveMessage(NotificationDurability notif) {
-		repository.save(notif);
-        System.out.println("Received <" + notif + ">");
+		if (repository.findByPersonnageAndNomItem(notif.personnage, notif.nomItem) == null) {
+			repository.save(notif);
+	        System.out.println("Received <" + notif + ">");
+		}
     }
 
 }
