@@ -29,7 +29,7 @@ public class PersonnageController {
 	
 	@Autowired
 	private JoueurRepository joueurRepository;
-	
+
 	@RequestMapping("/personnage/{id}")
 	public String personnage(@PathVariable String id, Model model) {
 		Personnage personnage = repository.findOne(id);

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AutoConfigureDataMongo
 @RequestMapping("/app")
 public class JoueurController {
-	
+
 
 	@Autowired
 	private JoueurRepository joueurRepository;
@@ -30,6 +30,7 @@ public class JoueurController {
 		model.addAttribute("personnages", personnages);
 		model.addAttribute("joueur", j);
 		return "joueur";
+
 	}
 }
 
