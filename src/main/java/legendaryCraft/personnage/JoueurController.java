@@ -35,6 +35,7 @@ public class JoueurController {
 		List<Personnage> personnages = personnageRepository.findByJoueur(j);
 		List<NotificationDurability> nd = nDRepository.findByJoueur(j);
 
+		model.addAttribute("estConnecte",true);
 		model.addAttribute("notifs",nd);
 		model.addAttribute("personnages", personnages);
 		model.addAttribute("joueur", j);

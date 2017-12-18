@@ -20,24 +20,24 @@
 	    		<td>{{niveau}}</td>
 	  		</tr>
   		{{/personnages}}
+  		{{#estConnecte}}
   		<tr>
-	    	<td><a href="/app/nouv_personnage/">céer un nouveau personnage</a></td>
+	    	<td><a href="/app/nouv_personnage/">créer un nouveau personnage</a></td>
 	  	</tr>
-	 </table>
-   	<h4>Notification sur les items qui n'ont plus de résistance</h4>
+	  	{{/estConnecte}}
+	</table>
+	{{#estConnecte}}
+	<h4>Notification sur les items qui n'ont plus de résistance</h4>
 
   	{{#notifs}}
   		
-	  	<tr>
-	    	<td>
-	    		<ul>
-	    			<li>nom du personnage : {{personnage.nom}}</li>
-	    			<li>nom de l'item : {{nomItem}}</li>
+	    <ul>
+	    	<li>nom du personnage : {{personnage.nom}}</li>
+	    	<li>nom de l'item : {{nomItem}}</li>
 	    		
-	    		</ul>
-	    	</td>
-	  	</tr>
+	    </ul>
   	{{/notifs}}
+  	{{/estConnecte}}
 
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Sign Out"/>

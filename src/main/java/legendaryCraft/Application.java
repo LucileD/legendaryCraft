@@ -98,7 +98,7 @@ public class Application {
     	cars.add(deg);
     	
     	Item epee = new Item(ItemType.EPEE, "Lame de Duncan", 50, cars, Rarete.RARE, 1, true, truc);
-    	Item epeepetite = new Item(ItemType.EPEE, "mini lame des eux", 2, cars, Rarete.COMMON, 1, false, truc);
+    	Item epeepetite = new Item(ItemType.EPEE, "mini lame des eaux", 2, cars, Rarete.COMMON, 1, false, truc);
     	
     	Item masse = new Item(ItemType.MASSE, "Masse de son père", 20, cars, Rarete.COMMON, 1, false, truc);
     	
