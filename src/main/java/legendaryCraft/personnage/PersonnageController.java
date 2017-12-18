@@ -66,6 +66,9 @@ public class PersonnageController {
 		
 		if ( personnage.getJoueur().getId().equals(j.getId())){
 			model.addAttribute("estMonPerso",true);
+			model.addAttribute("urlRedirect", "/app/joueur");
+		} else {
+			model.addAttribute("urlRedirect", "/app/joueur/" + personnage.getJoueur().getId());
 		}
 		
 		ItemType[] itemtypes = ItemType.values();

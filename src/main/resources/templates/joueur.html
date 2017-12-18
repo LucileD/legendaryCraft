@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<meta charset="UTF-8">
 	<title> joueur {{joueur.pseudo}}</title>
 	<link rel="stylesheet" type="text/css" href="../../item.css">
 </head>
 <body>
 	<h1>page du joueur {{joueur.pseudo}} </h1>
 
-	<h2>Liste de vos personnages </h2>
+	<h2>Liste des personnages </h2>
 	<table>
 		<tr>
    			<th>Nom</th>
@@ -26,7 +27,6 @@
 	  	</tr>
 	  	{{/estConnecte}}
 	</table>
-	<a href="/logout" >Déconnexion</a>
 	{{#estConnecte}}
 	<h4>Notification sur les items qui n'ont plus de résistance</h4>
 
@@ -41,8 +41,7 @@
   	{{/notifs}}
   	{{/estConnecte}}
 	</br>
-	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Sign Out"/>
-    </form>
+	<a href="/index.html"> <button>Retour à l'index</button></a>
+	<a href="/logout"><button>Se Déconnecter</button></a>
 </body>
 </html>

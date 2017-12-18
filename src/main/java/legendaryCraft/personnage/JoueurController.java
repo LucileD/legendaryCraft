@@ -60,7 +60,7 @@ public class JoueurController {
 		List<Joueur> joueurs = joueurRepository.findAll();
 		
 		int indexToRemove = -1;
-		for (int i = 0; i < joueurs.size() - 1; i++) {
+		for (int i = 0; i < joueurs.size(); i++) {
 			if (joueurs.get(i).getLogin().equals(principal.getName())) {
 				indexToRemove = i;
 			}

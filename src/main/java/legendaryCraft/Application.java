@@ -61,27 +61,22 @@ public class Application {
     
     @Bean
     public CommandLineRunner demo(ItemRepository itemRepository, PersonnageRepository personnageRepository, JoueurRepository joueurRepository){
-//    	armeRepository.save(e);
-//    	armeRepository.save(m);
-    	
-//    	repository.save(new Item("boucle d'oreilles","nomb",10));
-//    	repository.save(new Item("ceinture","c1",20));
-//    	repository.save(new Item("épée","e1",100));
 
-//    	personnageRepository.save(new Personnage("perso1", new Joueur(), 2, null, null, null, null, null, null, null, null, null, null));
-//    	personnageRepository.save(new Personnage("perso2", new Joueur(), 8, null, null, null, null, null, null, null, null, null, null));
-   
     	Joueur j1 = new Joueur("TrucMuche","truc","muche");
     	Joueur j2 = new Joueur("Avast","Dorian","mdp");
+    	Joueur j3 = new Joueur("Numérobis","Amombofis","cléopatre");
     	joueurRepository.save(j1);
     	joueurRepository.save(j2);
+    	joueurRepository.save(j3);
     	
     	Personnage truc = new Personnage("Truc", j1, 90);
     	Personnage muche = new Personnage("Muche", j1, 2);
     	Personnage zoe = new Personnage("Zoé", j2, 2);
+    	Personnage asterix = new Personnage("Astérix", j3, 42);
     	personnageRepository.save(truc);
     	personnageRepository.save(muche);
     	personnageRepository.save(zoe);
+    	personnageRepository.save(asterix);
     	
     	ArrayList<Caracteristique> cars = new ArrayList<Caracteristique>();
     	

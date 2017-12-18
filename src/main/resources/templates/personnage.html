@@ -6,6 +6,8 @@
 </head>
 <body>
 	<h1>Personnage : {{personnage.nom}}</h1>
+	<a href="{{urlRedirect}}"> <button> Retour aux personnages</button></a>
+	<a href="/index.html"> <button> Retour à l'index</button></a>
 	<p>Niveau {{personnage.niveau}}</p>
 	<p>Equipement</p>
 	<ul>
@@ -22,7 +24,6 @@
 		<li>Arme : {{#personnage.arme.nom}}{{personnage.arme.nom}}{{/personnage.arme.nom}}</li>
 		 <li>Bouclier : {{#personnage.bouclier.nom}}{{personnage.bouclier.nom}}{{/personnage.bouclier.nom}}</li>
 	</ul>
-	{{#estMonPerso}}
 		<!-- STATS DU PERSONNAGE -->
 		<table>
 			<tr>
@@ -37,6 +38,7 @@
 			</tr>
 		</table>
 		
+	{{#estMonPerso}}
 		<!-- INVENTAIRE -->
 		<h3>Liste des items </h3>
 		<!-- tri des items -->
