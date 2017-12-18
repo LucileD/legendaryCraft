@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import legendaryCraft.item.enums.ItemType;
 import legendaryCraft.item.enums.Rarete;
+import legendaryCraft.personnage.Joueur;
 
 @Document(collection = "Item")
 public class Item {
@@ -31,12 +32,14 @@ public class Item {
 	
 	protected boolean isADeuxMains;
 	
+	protected Joueur joueur;
+	
 	public Item() {
 		this.id = new ObjectId().toString();
 		this.isADeuxMains = false;
 	}
 	
-	public Item (ItemType type, String nom, int resTotale, List<Caracteristique> caracs, Rarete rarete, int niveauRequis, boolean isADeuxMains){
+	public Item (ItemType type, String nom, int resTotale, List<Caracteristique> caracs, Rarete rarete, int niveauRequis, boolean isADeuxMains, Joueur joueur){
 		this.itemType = type;
 		this.id = new ObjectId().toString();
 		this.res = resTotale;
@@ -46,6 +49,7 @@ public class Item {
 		this.rarete = rarete;
 		this.niveauRequis = niveauRequis;
 		this.isADeuxMains = isADeuxMains;
+		this.joueur = joueur;
 	}
 
 	@Override
@@ -135,6 +139,14 @@ public class Item {
 
 	public void setAdeuxMains(boolean isAdeuxMains) {
 		this.isADeuxMains = isAdeuxMains;
+	}
+	
+	public Joueur getJoueur() {
+		return this.joueur;
+	}
+	
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
 	}
 
 	public int lowerRes(){
