@@ -9,20 +9,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 @AutoConfigureDataMongo
 @RequestMapping("/app")
-public class PersonnageController {
+public class JoueurController {
 
 	@Autowired
-	private PersonnageRepository repository;
+	private JoueurRepository joueurRepository;
 	
+	@Autowired
+	private PersonnageRepository personnageRepository;
 	
-	@RequestMapping("/personnage/{id}")
-	public String personnage(@PathVariable String id, Model model) {
-		Personnage personnage = repository.findById(id);
-		model.addAttribute("personnage", personnage);
-		return "personnage";
+	@RequestMapping("/joueur")
+	public String personnages(Model model) {
+		//récupérer id joueur avec connexion
+		String id = "tructest";
+		
+		
+		List<Personnage> personnages = personnageRepository.findByJoueur();
+		model.addAttribute("personnages", personnages);
+		return "personnages";
 	}
 }
+
+
