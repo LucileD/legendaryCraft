@@ -1,6 +1,7 @@
 package legendaryCraft.personnage;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +37,9 @@ public class PersonnageController {
 	private ItemRepository itemRepository;
 
 	@RequestMapping("/personnage/{id}")
-	public String personnage(@PathVariable String id, @RequestParam(value="type", required = false) String type, @RequestParam(value="rarete", required = false) String rarete, Model model) {
+	public String personnage(Principal principal, @PathVariable String id, @RequestParam(value="type", required = false) String type, @RequestParam(value="rarete", required = false) String rarete, Model model) {
 		Personnage personnage = repository.findOne(id);
+		Joueur j = joueurRepository.findByLogin(principal.getName());
 		List<Item> items = itemRepository.findByPersonnage(personnage);
 		CaracteristiqueIntitule[] caracs = CaracteristiqueIntitule.values();
 		int[] stats = personnage.statsOfPersonnage();
@@ -62,10 +64,11 @@ public class PersonnageController {
 			items = itemRepository.findByItemTypeAndRarete(itemtype, rareteItem);
 		}
 		
-		
+		if ( personnage.getJoueur().getId().equals(j.getId())){
+			model.addAttribute("estMonPerso",true);
+		}
 		
 		ItemType[] itemtypes = ItemType.values();
-		System.out.println("items : " + items.size());
 		model.addAttribute("personnage", personnage);
 		model.addAttribute("items", items);
 		model.addAttribute("itemtypes", itemtypes);
@@ -114,6 +117,8 @@ public class PersonnageController {
 			personnage.bottes = item;
 			break;
 		case BOUCLIER:
+			if ( personnage.arme.isAdeuxMains())
+				personnage.setArme(null);
 			personnage.bouclier = item;
 			break;
 		case CASQUE:
