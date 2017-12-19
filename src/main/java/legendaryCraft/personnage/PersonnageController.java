@@ -86,8 +86,8 @@ public class PersonnageController {
 	}
 	
 	@RequestMapping(value="/nouv_personnage", method=RequestMethod.POST)
-	public void newPersonnageP(Model model,@RequestParam String pseudo, @RequestParam String niveau,HttpServletResponse response) throws IOException {
-		Joueur joueur = joueurRepository.findByPseudo("TrucMuche");
+	public void newPersonnageP(Principal principal,Model model,@RequestParam String pseudo, @RequestParam String niveau,HttpServletResponse response) throws IOException {
+		Joueur joueur = joueurRepository.findByLogin(principal.getName());
 		repository.save(new Personnage(pseudo,joueur,Integer.parseInt(niveau)));
 		response.sendRedirect("/app/joueur");
 	}
@@ -104,6 +104,16 @@ public class PersonnageController {
 		
 		// on équipe l'item
 		switch (item.getItemType()){
+		case ANNEAU:
+			if (personnage.anneauDroit == null)
+				personnage.anneauDroit = item;
+			else if ( personnage.anneauGauche == null)
+				personnage.anneauGauche = item;
+			else{
+				personnage.anneauDroit = personnage.anneauGauche;
+				personnage.anneauGauche = item;
+			}
+			break;
 		case AMULETTE:
 			personnage.amulette = item;
 			break;
