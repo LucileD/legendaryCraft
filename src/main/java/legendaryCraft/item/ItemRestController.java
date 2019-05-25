@@ -3,7 +3,6 @@ package legendaryCraft.item;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +15,6 @@ import legendaryCraft.personnage.Personnage;
 import legendaryCraft.personnage.PersonnageRepository;
 
 @RestController
-@AutoConfigureDataMongo
 @RequestMapping("/api")
 public class ItemRestController {
 	

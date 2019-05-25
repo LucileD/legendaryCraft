@@ -5,7 +5,6 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +14,6 @@ import legendaryCraft.notification.NotificationDurability;
 import legendaryCraft.notification.NotificationDurabilityRepository;
 
 @Controller
-@AutoConfigureDataMongo
 @RequestMapping("/app")
 public class JoueurController {
 
